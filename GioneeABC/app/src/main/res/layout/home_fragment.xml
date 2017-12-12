@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleIndicator="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="220dp" />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:ci_drawable="@drawable/selected_circle"
+        app:ci_drawable_unselected="@drawable/unselected_circle"
+        app:ci_height="5dp"
+        app:ci_width="5dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:visibility="visible"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_white_on_blue"
+                    android:orientation="vertical">
+
+                    <!--android:background="@drawable/circle_primary"-->
+                    <!--android:layout_gravity="center"-->
+
+                    <LinearLayout
+                        android:id="@+id/ll_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical">
+
+                        <com.gionee.gioneeabc.helpers.FontImageView
+                            android:id="@+id/iv_sis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="g"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/img_size" />
+
+                        <TextView
+                            android:id="@+id/tvProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="Products"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_white_on_orange"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_recommender"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical">
+
+                        <com.gionee.gioneeabc.helpers.FontImageView
+                            android:id="@+id/iv_recommender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="h"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/img_size" />
+
+                        <TextView
+                            android:id="@+id/tv_recommender"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="Recommender"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:weightSum="2">
+
+                <LinearLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_white_on_pink"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_tutorials"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        >
+
+                        <com.gionee.gioneeabc.helpers.FontImageView
+                            android:id="@+id/iv_gsb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="i"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/img_size" />
+
+                        <TextView
+                            android:id="@+id/tvTutorials"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="Tutorials"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_white_on_teal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_updates"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:orientation="vertical"
+                        >
+
+                        <com.gionee.gioneeabc.helpers.FontImageView
+                            android:id="@+id/iv_updates"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="k"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/img_size" />
+
+                        <TextView
+                            android:id="@+id/tv_updates"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center"
+                            android:text="Updates"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:visibility="gone"-->
+                <!--android:weightSum="2">-->
+
+
+                <!--<LinearLayout-->
+
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginRight="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/ripple_white_on_teal"-->
+                    <!--android:gravity="center_horizontal|center_vertical"-->
+                    <!--android:orientation="vertical">-->
+
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/ll_learning"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:gravity="center_horizontal|center_vertical"-->
+                        <!--android:orientation="vertical"-->
+                        <!--&gt;-->
+
+                        <!--<com.gionee.gioneeabc.helpers.FontImageView-->
+                            <!--android:id="@+id/iv_maintenance"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="j"-->
+                            <!--android:textColor="@color/white"-->
+                            <!--android:textSize="@dimen/img_size" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_learning"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="25dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="Learning"-->
+                            <!--android:textColor="@color/white" />-->
+
+                    <!--</LinearLayout>-->
+
+
+                <!--</LinearLayout>-->
+
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/ripple_white_on_orange"-->
+                    <!--android:gravity="center_horizontal|center_vertical"-->
+                    <!--android:orientation="vertical">-->
+
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/ll_forum"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_horizontal|center_vertical"-->
+                        <!--android:orientation="vertical"-->
+                        <!--&gt;-->
+
+                        <!--<com.gionee.gioneeabc.helpers.FontImageView-->
+                            <!--android:id="@+id/iv_forum"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="n"-->
+                            <!--android:textColor="@color/white"-->
+                            <!--android:textSize="@dimen/img_size" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_forum"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="25dp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="Forum"-->
+                            <!--android:textColor="@color/white" />-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</LinearLayout>-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

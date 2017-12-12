@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">Gionee Star</string>
+
+
+    <string name="openDrawer">Open navigation drawer</string>
+    <string name="closeDrawer">Close navigation drawer</string>
+
+
+    <string name="action_settings">Settings</string>
+
+
+    <string-array name="home_activities">
+        <item>FAB &amp; Toolbar Animation</item>
+        <item>Transparent Toolbar Test</item>
+        <item>Navigation Drawer</item>
+        <item>Toolbar Animation with Image</item>
+        <item>Material Style Tabs</item>
+        <item>Card View Toolbar</item>
+        <item>Quick Return Pattern</item>
+        <item>Reveal Animation</item>
+        <item>Gmail Style List</item>
+        <item>Introductory View Pager</item>
+
+
+    </string-array>
+
+    <string-array name="home_activities_subtitle">
+        <item>G+ like on scroll hide animation</item>
+        <item>Overlaid transparent Toolbar</item>
+        <item>Material Design drawer with scrim</item>
+        <item>Using the new Support Design Library</item>
+        <item>Tab strip with Design Support Lib</item>
+        <item>Nested Toolbar in card</item>
+        <item>UI Pattern using Design Support Lib</item>
+        <item>Circular Reveal for pre Lollipop</item>
+        <item>Colored list icons</item>
+        <item>Google style product tour</item>
+
+    </string-array>
+
+    <!--Change Password Screen-->
+    <string name="change_password">CHANGE PASSWORD</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="submit">Submit</string>
+
+    <!--Login Screen-->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forgot Password ?</string>
+    <string name="forgot_pass">FORGOT PASSWORD</string>
+    <!--App Messages-->
+    <string name="msg_no_internet">No internet available, please check your connection and try again</string>
+    <string name="msg_no_first_name">Please enter first name</string>
+    <string name="msg_no_last_name">Please enter last name</string>
+    <string name="msg_no_contact_no">Please enter contact number</string>
+    <string name="msg_no_products">No Products available</string>
+    <string name="msg_no_document">No Document found</string>
+    <string name="msg_no_response">Oops something went wrong, try again later </string>
+    <string name="msg_provide_registered_email">Please provide your registered E-mail ID</string>
+    <string name="msg_password_changed_successfully">Password changed successfully, please check your mail for new password</string>
+    <string name="msg_not_authorized_user">You are not authorized to login</string>
+    <string name="err_mail_msg">Please enter your mail id</string>
+    <string name="err_invalid_mail_msg">Please enter valid mail id</string>
+    <string name="err_pass_msg">Please enter your password</string>
+    <string name="session_time_out_msg">Session time out, please login again</string>
+    <string name="err_old_pass_msg">Please enter old password</string>
+    <string name="err_new_pass_msg">Please enter new password</string>
+    <string name="err_confirm_pass_msg">Please enter confirm password</string>
+    <string name="err_new_confirm_pass_not_match_msg">New password and confirm password are not same</string>
+    <string name="msg_profile_update">Your profile is updated successfully</string>
+    <string name="validation_text">Your Account is Deactivated</string>
+    <string name="choice_msg">Do You Want to Send Reactivation Request ?</string>
+    <string name="cancel">Close</string>
+    <string name="request">Request</string>
+    <string name="msg_no_email">Please enter Email</string>
+    <string name="msg_no_nd">Please enter ND name</string>
+    <string name="msg_no_rds">Please enter RDS name</string>
+    <string name="msg_no_state">Please enter state</string>
+    <string name="msg_no_city">Please enter city</string>
+    <string name="msg_no_zone">Zone data not found</string>
+    <string name="warning_zone">Please select zone first</string>
+    <string name="warning_nd">Please select ND first</string>
+    <string name="msg_no_state_found">State not found</string>
+    <string name="warning_state">Please select state first</string>
+    <string name="msg_no_city_found">City not found</string>
+    <string name="tutorials_not_found">Tutorials not found</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_recommender">Recommender</string>
+    <string name="title_compare">Compare</string>
+    <string name="text_filter_by_manufacturer">Filter by Manufacturer</string>
+    <string name="text_filter_by_atributes">Filter by Attributes</string>
+    <string name="text_brand">Brand</string>
+    <string name="text_model">Model</string>
+    <string name="text_min_price">Min Price</string>
+    <string name="text_max_price">Max Price</string>
+    <string name="text_min">Min</string>
+    <string name="text_ram">RAM</string>
+    <string name="text_processor">Processor</string>
+    <string name="text_camera">Camera</string>
+    <string name="text_battery">Battery</string>
+    <string name="text_storage">Storage</string>
+    <string name="text_more_filter">+ MORE FILTER</string>
+    <string name="text_clear">CLEAR</string>
+    <string name="text_apply">APPLY</string>
+    <string name="text_select_model">Select model</string>
+    <string name="text_select_brand">Select brand</string>
+    <string name="tag_uncheck">uncheck</string>
+    <string name="tag_check">check</string>
+    <string name="text_filter_result">Filter Results</string>
+    <string name="text_top_result">Top 3 Gionee Products</string>
+    <string name="min_length">Please enter minimum 3 Character</string>
+    <string name="text_filter">Filter</string>
+
+    <string name="demo_min_label"></string>
+    <string name="demo_max_label"></string>
+    <string name="msg_please_select_model">Please select model</string>
+    <string name="msg_please_select_brand">Please select any brand</string>
+    <string name="text_sort">Sort</string>
+    <string name="text_done">DONE</string>
+    <string name="msg_no_filter_selected">No filter selected</string>
+    <string name="search">Search</string>
+</resources>

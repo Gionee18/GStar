@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tvHeader"
+            style="@style/HeaderTextView"
+            android:layout_margin="16dp"
+            android:text="Profile Picture" />
+
+        <TextView
+            android:id="@+id/tvCamera"
+            style="@style/NormalTextView"
+            android:background="@drawable/ripple_grey"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:text="Open Camera" />
+
+        <TextView
+            android:id="@+id/tvGallery"
+            style="@style/NormalTextView"
+            android:background="@drawable/ripple_grey"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:text="Open Gallery" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- End current session if app sleeps for a period of time -->
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <screenName name="com.gionee.gioneeabc.activities.MainActivity">Dashboard
+        Screen
+    </screenName>
+    <screenName name="com.gionee.gioneeabc.activities.EditProfileScreen">Edit Profile Screen
+    </screenName>
+    <screenName name="com.gionee.gioneeabc.activities.ForgotPassActivity">Forgot Password
+        Screen
+    </screenName>
+    <screenName name="com.gionee.gioneeabc.activities.LoginActivity">Login Screen</screenName>
+    <screenName name="com.gionee.gioneeabc.activities.ProductDetailActivity">Product detail Screen
+    </screenName>
+    <screenName name="com.gionee.gioneeabc.activities.ProductsActivity">Product list Screen
+    </screenName>
+
+    <!-- Enable automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <!--  The property id associated with this analytics tracker -->
+    <string name="ga_trackingId">UA-77649917-1</string>
+
+    <string name="ga_sampleFrequency">100.0</string>
+
+    <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <!--
+      See Project Structure -> Analytics -> Google Analytics -> Learn More
+      to learn more about configuring this file.
+    -->
+</resources>

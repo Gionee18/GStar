@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "63812825018",
+    "firebase_url": "https://gioneestar-b3cfd.firebaseio.com",
+    "project_id": "gioneestar-b3cfd",
+    "storage_bucket": "gioneestar-b3cfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63812825018:android:2a071c613b7d6832",
+        "android_client_info": {
+          "package_name": "com.gionee.gioneeabc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63812825018-r07m2q6shotp6u0f6llq5nv2dnrhvka3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gionee.gioneeabc",
+            "certificate_hash": "1295B188942C927FA86516235713AF998FECA298"
+          }
+        },
+        {
+          "client_id": "63812825018-h2p4509e65ec63dd4ve5jvpfdhijl78u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfOJQ3O_Pvddd6Ze96oyERVG0A4_5_qOM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63812825018-h2p4509e65ec63dd4ve5jvpfdhijl78u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

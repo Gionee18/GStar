@@ -1,0 +1,3 @@
+keystore password: gioneestar
+key alias : gionee star
+key password : gioneestar

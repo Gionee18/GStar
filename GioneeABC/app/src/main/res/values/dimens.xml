@@ -1,0 +1,31 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="tool_bar_elevation">4dp</dimen>
+    <dimen name="app_bar_height">360dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <!-- LEFT NAVIGATION DRAWER-->
+    <dimen name="nav_element_size">16sp</dimen>
+    <dimen name="nav_header_size">14sp</dimen>
+    <dimen name="img_size">40sp</dimen>
+    <dimen name="padding_15">25dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_recommender_text_size">15dp</dimen>
+    <dimen name="dp_recommender_padding">17dp</dimen>
+    <dimen name="dp_recomm_title_margin_right">10dp</dimen>
+    <dimen name="sp_recomm_select_text_size">12sp</dimen>
+
+    <dimen name="thumb_width">20dp</dimen>
+    <dimen name="thumb_height">20dp</dimen>
+    <dimen name="sheet_text_scrim_height_top">88dp</dimen>
+    <dimen name="sheet_text_scrim_height_bottom">88dp</dimen>
+
+
+</resources>

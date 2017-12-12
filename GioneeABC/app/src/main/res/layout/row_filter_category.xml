@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="@dimen/dp_recommender_padding">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_recomm_title_margin_right"
+            android:layout_toLeftOf="@+id/iv_categ_arrow">
+
+            <TextView
+                android:id="@+id/tv_categ_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_model"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dp_recommender_text_size" />
+
+            <TextView
+                android:id="@+id/tv_categ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_categ_title"
+                android:layout_marginTop="2dp"
+                android:singleLine="true"
+                android:text="@string/text_select_model"
+                android:textSize="@dimen/sp_recomm_select_text_size"
+                android:textColor="@color/half_black"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_categ_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_right" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/c_divider" />
+
+</LinearLayout>

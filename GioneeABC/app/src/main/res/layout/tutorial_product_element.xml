@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_grey"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp">
+
+
+            <ImageView
+                android:id="@+id/ivDocIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+
+                android:gravity="center"
+                android:src="@drawable/youtube" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:src="@drawable/play_youtube" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/view"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/ll_doc"
+            android:layout_toRightOf="@+id/ivDocIcon"
+            android:layout_weight=".85">
+
+            <TextView
+                android:id="@+id/tvDocName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Homesdfffffffffffffffffffffffff"
+                android:textColor="@color/black"
+                android:textSize="@dimen/nav_element_size" />
+
+            <TextView
+                android:id="@+id/tvchannel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDocName"
+                android:layout_marginLeft="16dp"
+                android:text="Duration:20min"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvchannel_name"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_doc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="8dp"
+            android:layout_weight=".15"
+            android:orientation="horizontal">
+
+
+            <com.gionee.gioneeabc.helpers.FontImageView
+                android:id="@+id/iv_doc_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_primary"
+                android:padding="4dp"
+                android:text="m"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:visibility="visible" />
+
+            <com.gionee.gioneeabc.helpers.FontImageView
+                android:id="@+id/iv_doc_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_primary"
+                android:padding="4dp"
+                android:text="v"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/silver" />
+
+
+</LinearLayout>

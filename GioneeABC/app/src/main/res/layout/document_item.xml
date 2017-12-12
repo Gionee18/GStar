@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    android:background="@drawable/ripple_grey"
+    android:padding="8dp">
+
+    <com.gionee.gioneeabc.helpers.FontImageView
+        android:id="@+id/ivDocIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="q"
+        android:textColor="@color/colorPrimary"
+        android:textSize="42sp" />
+
+    <TextView
+        android:id="@+id/tvDocName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/ivDocIcon"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="Home"
+        android:textColor="@color/black"
+        android:textSize="@dimen/nav_element_size" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:orientation="horizontal">
+        <com.gionee.gioneeabc.helpers.FontImageView
+            android:id="@+id/iv_doc_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="2dp"
+            android:text="s"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+    <com.gionee.gioneeabc.helpers.FontImageView
+        android:id="@+id/iv_doc_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="3dp"
+        android:text="m"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@drawable/circle_primary"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/silver" />
+
+
+</RelativeLayout>

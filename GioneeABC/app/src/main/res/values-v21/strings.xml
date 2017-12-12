@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_no_zone">Zone data not found</string>
+    <string name="msg_no_state_found">State not found</string>
+    <string name="msg_no_city_found">City not found</string>
+    <string name="tutorials_not_found">Tutorials not found</string>
+    <string name="demo_min_label"></string>
+    <string name="demo_max_label"></string>
+</resources>

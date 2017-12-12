@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/ic_product"
+        android:showAsAction="collapseActionView"
+        android:title="Products"></item>
+    <item
+        android:id="@+id/ic_tutorial"
+        android:showAsAction="collapseActionView"
+        android:title="Tutorials"></item>
+    <item
+        android:id="@+id/ic_updates"
+        android:showAsAction="collapseActionView"
+        android:title="Updates"></item>
+    <item
+        android:id="@+id/ic_recomm"
+        android:showAsAction="collapseActionView"
+        android:title="Recommender"></item>
+    <item
+        android:id="@+id/ic_home"
+        android:icon="@drawable/home"
+        android:showAsAction="ifRoom"
+        android:title="Home"></item>
+</menu>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_grey"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+
+    <com.gionee.gioneeabc.helpers.FontImageView
+        android:id="@+id/iv_icon_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:text="d"
+        android:textSize="40sp" />
+
+    <com.gionee.gioneeabc.helpers.FontImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_icon_back"
+        android:layout_alignLeft="@+id/iv_icon_back"
+        android:layout_alignRight="@+id/iv_icon_back"
+        android:layout_alignTop="@+id/iv_icon_back"
+        android:gravity="center"
+        android:text="g"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/tv_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="24dp"
+        android:layout_toRightOf="@+id/iv_icon_back"
+        android:text="Home"
+        android:textColor="@color/black"
+        android:textSize="@dimen/nav_element_size" />
+
+</RelativeLayout>
