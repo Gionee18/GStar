@@ -1,0 +1,101 @@
+<authentication></authentication>
+<div class="row">
+<div class="col-lg-12">	<h1 class="advn_tbl"><back></back>&nbsp; Edit Updates Topic</h1>	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+			<!-- Form start here -->
+
+			<form name="myform" style="padding-top:15px;" ng-submit="submitTopicData()">
+
+			<div class="col-sm-6">
+			  <div class="form-group">
+				<label for="recipient-name" class="control-label">Title<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text" ng-model="editTopic.topic_name" maxlength="255" class="form-control" id="recipient-name" required>
+			   </div>
+			  </div>
+			
+			<div class="form-group">
+				<label for="message-text" class="control-label">Status<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select ng-model="editTopic.status" ng-options="item.value as item.name for item in CatStatus" class="form-control" required>
+						<option value="">Select</option>
+					</select>
+				</div>
+			  </div>
+				<div class="form-group">
+				<label for="message-text" class="control-label">Send Notification(s) To<span class="required">*</span></label>
+				  <div class="cmmn_input ucb">
+				<span><input type="checkbox" id="id1" name="chk1" value="notification_admin" ng-checked="editTopic.notification_admin == 1" ng-model="editTopic.notification_admin">&nbsp;Admin&nbsp;</span>
+				<span><input type="checkbox"  id ="id2" name="chk2" value="notification_trainer" ng-checked="editTopic.notification_trainer == 1" ng-model="editTopic.notification_trainer">&nbsp;Trainer </span>
+				<span><input type="checkbox"  id ="id3" name="chk3" value="notification_supervisor" ng-checked="editTopic.notification_supervisor == 1" ng-model="editTopic.notification_supervisor">&nbsp;Supervisor</span>	
+				<span><input type="checkbox"  id ="id4" name="chk4" value="notification_learner" ng-checked="editTopic.notification_learner == 1" ng-model="editTopic.notification_learner">&nbsp;Learner	</span>	
+				
+					
+			  </div>
+			  </div>
+			</div>   <!-- col-sm-6 end here  -->
+				
+
+				<div class="col-sm-6">
+					
+					<div class="form-group">
+						<label for="message-text" class="control-label">Category<span class="required">*</span></label>
+						  <div class="cmmn_input">
+								<select  ng-model="editTopic.category_id" ng-change="changeSubcat(editTopic.category_id)" class="form-control" required >
+							<option value="">Select</option>
+							<option ng-repeat="cat in categoryList" ng-selected="editTopic.category_id == cat.id" value="{{cat.id}}">{{cat.category_name}}</option>
+							</select>
+						  </div>
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="control-label">Sub-Category<span class="required">*</span></label>
+						  <div class="cmmn_input">
+							<select ng-model="editTopic.subcategory_id"  class="form-control" ng-options="scat.id as scat.subcategory_name for scat in subcatList" required>
+								<option value="" selected disabled>Select</option>
+								<!-- <option ng-repeat="scat in subcatList"  value="{{scat.id}}">{{scat.subcategory_name}}</option> -->
+							</select>
+						  </div>
+					</div>
+					<div class="form-group">
+					<label for="message-text" class="control-label">Expiry Date</label>
+					<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							<input type="text"  class="form-control" ng-model="editTopic.expired_on" readonly id="maskedDate" >
+						</div>
+					</div>
+					
+				
+			</div>   <!-- col-sm-6 end here  -->
+			<div class="col-sm-12">
+				<div class="form-group">
+				<label for="message-text" class="control-label">Description<span class="required">*</span></label>
+				  <div class="cmmn_input">
+				 <textarea ui-tinymce="tinymceOptions" ng-model="editTopic.topic_desc" maxlength="255" style="min-height:260px;" ></textarea>
+			  </div>
+			  </div>
+			</div>
+			
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a type="button" class="btn btn-default" data-match-route="/updates/topic-listing" href="#/updates/topic-listing">Cancel</a>
+			</div>
+			</form>
+			
+			<!-- Form end here -->
+			
+</div>  <!-- Main box body end here -->
+		</div>
+	</div>
+</div>
+
+
+
+
+

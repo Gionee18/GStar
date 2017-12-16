@@ -1,0 +1,57 @@
+<style type="text/css">
+.form-control{border: 3px solid rgba(41, 60, 21, 0.12);}
+</style>
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		
+		
+		<h1 class="advn_tbl"><back></back>&nbsp;Add Specifications</h1>
+		<div class="row"></div>
+		
+		 <ol class="breadcrumb">
+			<li><a href="javascript:void(0)">{{manufacturerName}}</a></li>
+			<li class="active"><span>{{modelName}}</span></li>
+		</ol> 
+	</div>
+</div>
+
+<div class="mainWrapper">
+	<div ng-repeat="cat in specData " ng-if="cat.subcategory.length > 0">
+	<div class="headerName">{{cat.cat_name}}</div>
+	<div class="bodyContainer">
+	<div class="row">
+		<div class="col-sm-6" ng-repeat="subcat in cat.subcategory">
+			<div class="col-sm-4">{{subcat.subcat_name}}</div>
+			<div class="col-sm-8">
+				<div class="form-group ng-scope" ng-if="subcat.attribute.length > 0">
+				<select  size="3" title="Select multiple value" class="form-control" multiple  ng-options="att.attribute_name as att.attribute_name for att in subcat.attribute " ng-model="subcat.selected_att_text" ng-change="sendValue(cat.id,subcat.subcatid,subcat.selected_att_text)">
+			<!-- <option ng-repeat="att in subcat.attribute"  value="{{att.attribute_name}}">{{att.attribute_name}}</option> -->
+			</select>
+				</div>
+				<div class="form-group" ng-if="subcat.attribute.length == 0">
+					<input type="text" class="form-control" ng-model="subcat.selected_att_text" ng-change="sendValue(cat.id,subcat.subcatid,subcat.selected_att_text)">
+					</div>
+				<!-- <div ng-if="subcat.attribute[0].attribute_name == 'Yes' || subcat.attribute[1].attribute_name == 'No'	">
+					 <input type="radio" name="gender" value="{{subcat.attribute[0].attribute_name}}"> {{subcat.attribute[0].attribute_name}}<br>
+					<input type="radio" name="gender" value="{{subcat.attribute[1].attribute_name}}"> {{subcat.attribute[1].attribute_name}}<br>
+				</div> -->
+			</div>
+		
+		</div></div>
+	
+	</div>
+</div>
+</div>
+<div style="position:fixed; bottom:10px; z-index:10;">
+	<button  class="btn btn-success" ng-click="addSpecData(0)">SAVE</button>
+	<button  class="btn btn-primary" ng-click="addSpecData(1)">PUBLISH</button>
+	
+</div>
+<a id="totop" href="javascript:void(0);" onclick="window.scrollTo(0, 0);" style="display: inline; float:right;"><i class="fa fa-angle-up"></i></a>
+<style>
+.specificaton-blk {
+    background: #fff;
+    padding: 12px 15px;
+}
+</style>

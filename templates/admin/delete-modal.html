@@ -1,0 +1,57 @@
+<style>
+.bgfade {
+    opacity: 1;
+    background: rgba(0,0,0,0.5);
+}
+.modal-dialog.smallmod {
+    width: 400px;
+    margin: 30px auto;
+}
+.lefttxt {
+    border-width: 1px;
+    text-align: left;
+}
+.lefttxt {
+    text-align: left;
+}
+.modal-footer {
+    border-width: 1px;
+}
+</style>
+<div class="modal fade bgfade" id="{{handler}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog smallmod" role="document">
+    <div class="modal-content">
+      <div class="modal-header lefttxt">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Delete</h4>
+      </div>
+      <div class="modal-body lefttxt">
+        <p>{{body}}</p>
+      </div>
+      <div class="modal-footer">
+	   <button id="yes" type="button" class="btn btn-primary">Yes</button>
+        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">No</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Delete</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete this category?</p>
+      </div>
+      <div class="modal-footer">
+	   <button id="yes" type="button" class="btn btn-primary">Yes</button>
+        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">No</button>
+       
+      </div>
+    </div>
+  </div>
+</div> -->

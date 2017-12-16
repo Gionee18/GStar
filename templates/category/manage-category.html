@@ -1,0 +1,148 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl">Manage Categories</h1>
+
+
+<div class="row"></div>
+<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+
+<div class="shorting-block">
+<select ng-model="itemsPerPage" class="form-control">
+	<option value="10">10</option>
+	<option value="25">25</option>
+	<option value="50">50</option>
+	<option value="100">100</option>
+</select>
+</div>
+<div class="right_buttons">
+<select ng-model="selectProduct" ng-change="productFilter()"  class="form-control" style="width:100px; float: left;margin-right:10px;">
+					<option value="">All</option>
+					<option value="1">Products</option>
+					<option value="2">Tutorials</option>
+					<option value="3">Products/Tutorials</option>
+				</select>
+	<span style="width:150px; position: relative; border: 1px solid #ccc; display: block; float: right; margin-left: 10px;">
+	<my-tag src="'categories'" callback="getUpdatedData(data)"></my-tag>
+	
+		<span style="position: absolute;top: 6px;right: 7px;z-index: 10; background: #fff; cursor: pointer; padding: 0 3px;">
+			<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+		</span>
+	</span>	
+<a data-match-route="/add-category" href="#add-category" class="btn btn-primary pull-right"><i class="fa fa-plus-circle fa-lg"></i> Add New</a>
+
+<!-- <add-new route="'add-category'" path="'add-category'"> </add-new> -->
+<span data-toggle="modal" data-target="#dnd_popup" ng-if="userData.role <= 10" class="btn btn-primary pull-right" style="margin-right:10px;"><i class="fa fa-exchange fa-rotate-90"></i></span>
+
+</div>
+</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+			<p style="color:red;">{{messageHead}}</p>
+			<p style="color:red;">{{message}}</p>
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list" >
+						<thead>
+							<tr>
+								
+								<th ng-click="sort('category_name')">Category Name<span class="glyphicon sort-icon" ng-show="sortKey=='category_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('description')" style="width: 300px;">Category Description<span class="glyphicon sort-icon" ng-show="sortKey=='description'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								<th >Available For</th>
+								<th ng-click="sort('status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								<th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<tr ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))|orderBy:sortKey:reverse">
+								<td>
+								<div class="tbl_img">
+									<img ng-if="x.asset != null && x.asset[0].name != ''" title="{{x.category_name}}" src="{{baseUrl}}{{x.asset[0].path}}/thumbnail/{{x.asset[0].name}}"/>
+									<img ng-if="!x.asset" title="{{x.category_name}}" src="assets\img\no_image.jpg"/>
+								</div>
+								<a href="#edit-category/{{x.id}}" title="{{x.category_name}}" class="user-link dis_criptn2">{{x.category_name}}</a>
+								
+									
+								</td>
+								
+								<td><div title="{{x.description}}" class="dis_criptn2">{{x.description}}</div></td>
+							
+								<td><span ng-if="x.is_product == 1">Products</span> &nbsp;&nbsp;   <br>    <span ng-if="x.is_tutorial == 1">Tutorials</span>  </td>
+									<td>
+									<span  ng-class="x.status=='1' ? 'label label-success' : 'label label-danger'" >{{x.status|statusFilter}}</span>
+								</td>
+								<td class="text-center">									
+									<a href="#edit-category/{{x.id}}" class="table-link" title="Edit">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								
+									 <a href="javascript:void(0);" class="table-link danger" title="Delete" ng-click="deleteCat(x.id)"> 
+										<span class="fa-stack" >
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+								
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+
+<!-- Drag n Drop Model -->
+
+<div class="modal fade" id="dnd_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Ordering Category</h4>
+      </div>
+      <div class="modal-body">
+        <!--  tab start here -->
+			<div class="simpleDemo">
+			    <!-- add from library end here -->			
+				<form>
+				<ul dnd-list="list">
+					<li ng-repeat="item in list" dnd-draggable="item" dnd-moved="list.splice($index, 1)" dnd-effect-allowed="move"
+					dnd-selected="models.selected = item" ng-class="{'selected': models.selected === item}">
+						<div class="row"><div class="col-sm-1">{{$index + 1}}</div><div class="col-sm-11">{{item.category_name}}</div></div>
+					</li>
+				</ul>
+				</form>
+			</div> <!--  tab end here -->
+      </div>
+      <div class="modal-footer">
+		<button type="button" ng-click="setOrder()" class="btn btn-primary" data-dismiss="modal">Save</button>
+		<button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+	  </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		 <ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>News</span></li>
+		</ol> 
+		
+		<h1 class="advn_tbl">News</h1>
+		<div class="row"></div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+		
+			<div class="shorting-block">
+				<select ng-model="itemsPerPage" class="form-control">
+					<option value="10">10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
+			<div class="right_buttons mnge_pduct">				
+				<span style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;"><input ng-model="search" placeholder="Search" ng-change="getSearchData()" type="text" class="form-control">
+					<span style="position: absolute;top: 6px;right: 7px;z-index: 999; background: #fff; cursor: pointer; padding: 0 3px;">
+						<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+					</span>
+				</span>
+				
+				<a data-match-route="/admin/add-news" href="#/admin/add-news" class="btn btn-primary pull-right"><i class="fa fa-plus-circle fa-lg"></i>&nbsp;Add New</a>
+				<!-- <span data-toggle="modal" data-target="#dnd_popup" class="btn btn-primary pull-right" style="margin-right:5px; margin-left:5px;"><i class="fa fa-exchange fa-rotate-90"></i></span> -->
+				<select ng-model="selectProduct" ng-change="ddlProduct()" class="form-control" style=" float: right;     margin-right: 4px;">
+					<option value="">All</option>
+					<option ng-repeat="c in productListArray" value="{{c.product_id}}">{{c.product_name}}</option>
+				</select>
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							 
+							  <th ng-click="sort('product_name')" >Title<span class="glyphicon sort-icon" ng-show="sortKey=='product_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <th ng-click="sort('product_name')" >Product Name<span class="glyphicon sort-icon" ng-show="sortKey=='product_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   <th ng-click="sort('product_desc')" >News Description<span class="glyphicon sort-icon" ng-show="sortKey=='product_desc'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   <th ng-click="sort('status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								
+								
+								<th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))|orderBy:sortKey:reverse">
+								<td>
+									<!-- <div class="tbl_img">
+									<img ng-if="x.asset_image != null && x.asset_image[0].name != ''" title="{{x.product_name}}" src="{{baseUrl}}{{x.asset_image[0].path}}/thumbnail/{{x.asset_image[0].name}}"/>
+									<img ng-if="!x.asset_image" title="{{x.product_name}}" src="assets\img\no_image.jpg"/>
+									</div> -->
+									<a href="#admin/edit-news/{{x.id}}" title="{{x.news_title}}" class="user-link dis_criptn2">{{x.news_title}}</a>
+									<!-- <span ng-if="x.new_product_flag == '1'" class="new_span_img"><img src="assets\img\new.gif" /></span> -->
+								</td>
+								
+								
+								<td title="{{x.product_name}}">{{x.product_name}}</td>
+								<td><div title="{{x.news_desc}}" class="dis_criptn2">{{x.news_desc}}</div></td>
+								<td>
+									<span  ng-class="x.status=='1' ? 'label label-success' : 'label label-danger'" >{{x.status|statusFilter}}</span>
+								</td>
+								<td class="text-center">
+									
+								
+									<a data-match-route="/admin/edit-news" href="#admin/edit-news/{{x.id}}" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<a href="javascript:void(0);" class="table-link danger" ng-click="deleteNews(x.id)">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Drag n Drop Model -->
+<div class="modal fade" id="dnd_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Ordering Product</h4>
+      </div>
+      <div class="modal-body">
+        <!--  tab start here -->
+			<div class="simpleDemo">
+			    <!-- add from library end here -->			
+				<form>
+				<ul dnd-list="orderList">
+					<li ng-repeat="item in orderList" dnd-draggable="item" dnd-moved="orderList.splice($index, 1)" dnd-effect-allowed="move"
+					dnd-selected="models.selected = item" ng-class="{'selected': models.selected === item}">
+						<div class="row"><div class="col-sm-1">{{$index + 1}}</div><div class="col-sm-11">{{item.product_name}}</div></div>
+					</li>
+				</ul>
+				</form>
+			</div> <!--  tab end here -->
+      </div>
+      <div class="modal-footer">
+		<button type="button" ng-click="setOrder()" class="btn btn-primary" data-dismiss="modal">Save</button>
+		<button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+	  </div>
+    </div>
+  </div>
+</div>

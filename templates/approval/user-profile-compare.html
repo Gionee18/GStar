@@ -1,0 +1,220 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+.approv_prod {
+    width: 100%;
+    float: none;
+}
+.approv_prod1 {
+    width: 100%;
+    float: none;
+}
+.compare_btn{
+  float: right;
+}
+.prd_name{
+  font-weight: bold;
+}
+.main-box h2 {
+    background-color: #e84e40;
+    border: 1px solid #e84e40;
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    margin: 5px 0 20px !important;
+    padding: 7px !important;
+    text-align: center;
+}
+.mb20{margin-bottom: 20px;}
+.theme-red .btn-danger { background-color: #03a9f4; border-color: #ca1f10;}
+.theme-red .btn-danger:hover { background-color: #03a9f4; border-color: #ca1f10; opacity: 0.8;}
+.breadcrumb li{ text-transform: uppercase !important; }
+.label {
+    background-clip: padding-box;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    color: #222;
+    display: table-cell;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 11px 10px;
+    text-align: left;
+}
+.main-box .main-box-body {padding: 0 0 20px;}
+.tablewrap{padding: 0px 20px;}
+.main-box{min-height: 650px;}
+</style>
+<div class="row">
+  <div class="col-lg-12">
+   <!--  <ol class="breadcrumb">
+      <li><a href="#dasboard">Dashboard</a></li>
+      <li class="active"><span>User-Profile Comparision </span></li>
+    </ol> -->
+    
+    <div class="clearfix">
+      <h1 class="pull-left advn_tbl"><back></back>&nbsp; User-Profile Comparison</h1>
+	 <!--  <div class="Rname">
+		<h3>Jatin</h3>		  
+		<span>Posted On: 1st December 2016</span>
+		<span class="appdate">Approved Date: 5th December 2016</span>		  
+	  </div> -->
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="compare_btn mb20">
+    <button class="btn btn-success" ng-click="approveUser('1')" ng-show="newData.approved_status == '0'">Approve</button>
+      <button  class="btn btn-danger" style="background-color: #e84e40;" ng-click="approveUser('2')"  ng-show="newData.approved_status == '0'">Reject</button>
+    </div>
+  </div>  
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="main-box">
+      <div class="main-box-body">
+      <div class="approv_prod">
+  <h2>Previous Details</h2>
+  <div class="tablewrap">
+    <table >
+
+      <tr>
+        <td class="prd_name">First Name</td>
+        <td>{{oldData.first_name}}</td>
+      </tr>
+      <tr>
+        <td class="prd_name">Last Name</td>
+        <td>{{oldData.last_name}}</td>
+     </tr>
+     <tr>
+        <td class="prd_name">Role</td>
+        <td>{{oldData.role | userRole}}</td>
+      </tr>
+     <tr>
+        <td class="prd_name">Email ID</td>
+        <td>{{oldData.email}}</td>
+      </tr>
+     <tr>
+      <td class="prd_name">Mobile No</td>
+      <td>{{oldData.contact}}</td>
+     </tr>
+     <tr>
+      <td class="prd_name">ND Name</td>
+     <td>{{oldData.nd_name}}</td>
+     </tr>
+      <tr>
+        <td class="prd_name">RD Name </td>
+        <td>{{oldData.rd_name}}</td>
+      </tr>
+     <tr>
+        <td class="prd_name">Zone </td>
+        <td>{{oldData.zone_name}}</td>
+      </tr>
+       <tr>
+        <td class="prd_name">City</td>
+        <td>{{oldData.city_name}}</td>
+      </tr>
+      
+     <tr>
+        <td class="prd_name">Profile pic</td>
+      <td>
+      <img ng-if="asset.type != 'image'" src="services/uploads/profileImages/thumbnail/{{oldData.profile_picture}}" height="50px" width="50px">
+     </tr>
+
+    </table>
+  </div>  
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+  <div class="main-box">
+    <div class="main-box-body">
+<div class="approv_prod1">
+<h2>Suggested Changes</h2>
+  <div class="tablewrap"> 
+    <table >
+
+      <tr ng-class="oldData.first_name == newData.first_name ? '' : 'warningborder'">
+        <td class="prd_name" >First Name</td>
+        <td>{{newData.first_name}}</td>
+      </tr>
+      <tr ng-class="oldData.last_name == newData.last_name ? '' : 'warningborder'">
+        <td class="prd_name" >Last Name</td>
+        <td>{{newData.last_name}}</td>
+     </tr>
+      <tr ng-class="oldData.role == newData.role ? '' : 'warningborder'">
+        <td class="prd_name" >Role</td>
+        <td>{{newData.role | userRole}}</td>
+        
+      </tr>
+     <tr  ng-class="oldData.email == newData.email ? '' : 'warningborder'">
+        <td class="prd_name">Email ID</td>
+        <td>{{newData.email}}</td>
+     </tr>
+     <tr  ng-class="oldData.contact ==newData.contact ? '' : 'warningborder'">
+      <td class="prd_name" >Mobile No</td>
+      <td>{{newData.contact}}</td>
+     </tr>
+     <tr  ng-class="oldData.nd_name ==newData.nd_name ? '' : 'warningborder'">
+      <td class="prd_name">ND Name</td>
+     <td>{{newData.nd_name}}</td>
+     </tr>
+      <tr  ng-class="oldData.rd_name ==newData.rd_name ? '' : 'warningborder'">
+        <td class="prd_name" >RD Name</td>
+         <td>{{newData.rd_name}}</td>
+      </tr>
+     <tr ng-class="oldData.zone_name ==newData.zone_name ? '' : 'warningborder'">
+        <td class="prd_name" >Zone </td>
+       <td>{{newData.zone_name}}</td>
+      </tr>
+       <tr ng-class="oldData.city_name == newData.city_name ? '' : 'warningborder'">
+        <td class="prd_name" >City</td>
+       <td>{{newData.city_name}}</td>
+      </tr>
+      
+     <tr ng-class="oldData.profile_picture == newData.profile_picture ? '' : 'warningborder'">
+        <td class="prd_name" >Profile pic</td>
+      <td>
+      <img src="services/uploads/profileImages/thumbnail/{{newData.profile_picture}}" height="50px" width="50px">
+      
+     </tr>
+
+    </table>
+  </div> 
+        </div>
+        <div style="clear:both;"></div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="compare_btn mb20">
+<button class="btn btn-success" ng-click="approveUser()">Approve</button>
+<a href="#/approval/edit-users-profile" class="btn btn-danger" style="background-color: #e84e40;" >Back</a> 
+</div> -->
+<div class="compare_btn mb20">
+
+<button class="btn btn-success" ng-click="approveUser('1')" ng-show="newData.approved_status == '0'">Approve</button>
+      <button  class="btn btn-danger" style="background-color: #e84e40;" ng-click="approveUser('2')"  ng-show="newData.approved_status == '0'">Reject</button>
+
+</div>
+

@@ -1,0 +1,145 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl"><back></back>&nbsp; Add Product</h1>
+		
+		
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+			<!-- Form start here -->
+
+			<form style="padding-top:15px;" ng-submit="addProduct()">
+
+			<div class="col-sm-6">
+			  <div class="form-group">
+				<label for="recipient-name" class="control-label">Name<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text" ng-model="addProd.product_name" maxlength="50" class="form-control" id="recipient-name" required>
+			   </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="message-text" class="control-label">Category<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select class="form-control" ng-model="addProd.category_id" required>
+						<option value="">Select</option>
+						<option ng-repeat="single in dataParentCat" value="{{single.id}}">{{single.category_name}}</option>
+					</select>
+				</div>
+			  </div>
+			  
+			<div class="form-group">
+				<label for="message-text" class="control-label">Status<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select ng-model="addProd.status" ng-options="item.value as item.name for item in CatStatus" class="form-control" required>
+						<option value="">Select</option>
+					</select>
+				</div>
+			  </div>				  
+			</div>   <!-- col-sm-6 end here  -->
+				
+
+				<div class="col-sm-6">
+				
+			   			   
+			<div class="form-group">
+				<label for="message-text" class="control-label">Description<span class="required">*</span></label>
+				  <div class="cmmn_input">
+				<textarea ng-model="addProd.product_desc" class="form-control" maxlength="255" style="min-height:190px;"required></textarea>
+			  </div>
+			  </div>
+			</div>   <!-- col-sm-6 end here  -->
+			
+			<div class="col-sm-6">		   
+				<div class="form-group">
+					<input type="checkbox" ng-model="addProd.new_product" ng-true-value="1" ng-false-value="0">
+					<label for="message-text" class="control-label">New</label>
+				</div>
+			</div>
+			<div class="col-sm-6">		   
+				<label for="recipient-name" class="control-label">Launch Date<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text"id="from" ng-model="addProd.launch_date" maxlength="50" class="form-control" readonly required>
+					
+			   </div>
+			</div>
+			<!--  CK text editor start here  -->
+			
+			
+				
+			
+			<div class="col-md-12">
+			<button type="submit" class="btn btn-primary">Save</button> 
+			<!-- 	<a type="button" class="btn btn-primary" data-match-route="/products/edit-product" href="#/products/edit-product">Save</a> -->
+				<a type="button" class="btn btn-default" data-match-route="/products/manage-products" href="#/products/manage-products">Cancel</a>
+			</div>
+			</form>
+			
+			<!-- Form end here -->
+			
+					
+	
+						
+		
+	
+
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Add document end here -->
+
+
+<!-- this page specific inline scripts -->
+
+
+
+
+
+
+	<script>
+	$(function() {
+		$('ul#gallery-photos').sortable({ opacity: 0.6, cursor: 'move', update: function() {
+			var order = $(this).sortable('serialize'); 
+			$.post('/gallery-sortimages.html', order, function(theResponse){
+		
+			}); 															 
+		}								  
+		});
+		
+		$(document).ready(function() {
+			$('#gallery-photos-lightbox').magnificPopup({
+				type: 'image',
+				delegate: 'a',
+				gallery: {
+					enabled: true
+			    }
+			});
+		});
+	});
+	</script>
+	
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl">Product Approval Requests</h1>
+		<div class="row"></div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+		
+			<div class="shorting-block">
+				<select ng-model="itemsPerPage" class="form-control">
+					<option value="10">10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
+			<div class="right_buttons mnge_pduct">		
+				
+				<span style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;"><!-- <input  type="text" ng-model="search" maxlength="50" placeholder="Search" ng-change="getSearchData()" class="form-control"> -->
+				<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="productList()" >
+					<span style="position: absolute;top: 6px;right: 7px;z-index: 10; background: #fff; cursor: pointer; padding: 0 3px;">
+						<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+					</span>
+				</span>
+			<div class="dis1" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		<input placeholder="From Date" id="productFrom" ng-model="startDate" ng-change="productList()" type="text" class="form-control " readonly>
+		<span  style="position: absolute; top: 6px;right: 10px;"><i class="fa fa-calendar"></i> 	</span>
+		</div>
+		<div class="dis1" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		
+		<input type="text" style="50%"  id="productTo" placeholder="To Date" ng-model="endDate"  ng-change="productList()"  class="form-control " readonly>	
+		<span style="position: absolute; top: 6px;right: 10px;"><i class="fa fa-calendar"></i>	</span>	
+		</div>	
+			<select  ng-model="statuslist" ng-change="productList()" class="form-control"style="width:120px; position: relative;border: 1px solid #ccc; display: block; margin-left: 5px;">
+					<option value="">All</option>
+					<option ng-repeat="(key,value) in status" value="{{key}}">{{value}}</option>
+				
+				</select>
+				<a class="btn btn-primary form-control"  style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: left; margin-left: 5px;" ng-click="exportData()"   ><i class="fa fa-upload" aria-hidden="true"></i>
+&nbsp;Export</a>
+			
+				
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							 <!-- <th></th> -->
+							  <th ng-click="sort('product_name')" >Product Name<span class="glyphicon sort-icon" ng-show="sortKey=='product_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <th ng-click="sort('category_name')" >Product Category<span class="glyphicon sort-icon" ng-show="sortKey=='category_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <!-- <th ng-click="sort('status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> -->
+							   <th ng-click="sort('product_desc')" >Requested By<span class="glyphicon sort-icon" ng-show="sortKey=='product_desc'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   
+							   
+								<th ng-click="sort('approved_date')" >Updated On<span class="glyphicon sort-icon" ng-show="sortKey=='approved_date'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('approve_status')" > Status<span class="glyphicon sort-icon" ng-show="sortKey=='approve_status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								<th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  |orderBy:sortKey:reverse">
+								<td>
+									
+									<span title="{{x.product_name}}" >{{x.product_name}}</span>
+									
+								</td>
+								
+								<td title="{{x.category_name}}">{{x.category_name}}</td>
+							
+								<td><div title="{{x.request_username}}" class="dis_criptn2">{{x.request_username}}</div></td>
+								
+							<!-- 	<td><span  ng-class="x.approve_status=='1' ? 'label label-success' : 'label label-warning'" >{{x.approve_status | approvalFilter}}</span></td> -->
+								
+								
+								
+								<td>{{x.approved_date | date:"dd/MM/yyyy"}}</td>
+	
+						<td ng-if="x.approve_status=='1'" ><span class="label label-{{x.approve_status|approvedstatusClass}}">{{x.approve_status | approvalFilter}}</span></td>
+						<td ng-if="x.approve_status=='0'" ><span class="label label-{{x.approve_status|approvedstatusClass}}">{{x.approve_status | approvalFilter}}</span></td>
+						<td ng-if="x.approve_status=='2'" ><span class="label label-{{x.approve_status|approvedstatusClass}}">{{x.approve_status | approvalFilter}}</span></td>
+						<td class="text-center">
+									
+								
+									<a href="#/approval/product-compare/{{x.product_id}}/{{x.request_userid}}/{{x.id}}"><i class="fa fa-eye" title="view" aria-hidden="true"></i></a>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+		<div style="display:none;" id="exportable">	
+		
+		
+		<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							 <!-- <th></th> -->
+							  <th ng-click="sort('product_name')" >Product Name<span class="glyphicon sort-icon" ng-show="sortKey=='product_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <th ng-click="sort('category_name')" >Product Category<span class="glyphicon sort-icon" ng-show="sortKey=='category_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <!-- <th ng-click="sort('status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> -->
+							   <th ng-click="sort('product_desc')" >Requested By<span class="glyphicon sort-icon" ng-show="sortKey=='product_desc'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   
+							   
+								<th ng-click="sort('approved_date')" >Updated On<span class="glyphicon sort-icon" ng-show="sortKey=='approved_date'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('approve_status')" > Status<span class="glyphicon sort-icon" ng-show="sortKey=='approve_status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  |orderBy:sortKey:reverse">
+								<td>
+									
+									<span title="{{x.product_name}}" >{{x.product_name}}</span>
+									
+								</td>
+								
+								<td title="{{x.category_name}}">{{x.category_name}}</td>
+							
+								<td><div title="{{x.request_username}}" class="dis_criptn2">{{x.request_username}}</div></td>
+								
+							<!-- 	<td><span  ng-class="x.approve_status=='1' ? 'label label-success' : 'label label-warning'" >{{x.approve_status | approvalFilter}}</span></td> -->
+								
+								
+								
+								<td>{{x.approved_date}}</td>
+	
+						<td ng-if="x.approve_status=='1'" ><span class="label label-{{x.approve_status|approvedstatusClass}}">{{x.approve_status | approvalFilter}}</span></td>
+						<td ng-if="x.approve_status=='0'" ><span class="label label-{{x.approve_status|approvedstatusClass}}">{{x.approve_status | approvalFilter}}</span></td>
+						<td ng-if="x.approve_status=='2'" ><span class="label label-{{x.approve_status|approvedstatusClass}}">{{x.approve_status | approvalFilter}}</span></td>
+						
+							</tr>
+						</tbody>
+					</table>
+		</div>		
+				</div>
+			</div>
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+

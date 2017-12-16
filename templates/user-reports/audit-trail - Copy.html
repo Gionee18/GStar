@@ -1,0 +1,405 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>Users</span></li>
+		</ol> -->
+		
+		<div class="clearfix">
+			<h1 class="pull-left">Manage Audit-Trail</h1>
+			
+			
+			<div class="row"></div>
+			<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+			<div class="shorting-block">
+			<select ng-model="itemsPerPage" class="form-control">
+				<option value="10">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+			</div>
+			
+			<div class="right_buttons">
+		<!-- <div  style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+			<select class="form-control" ng-model="change" ng-change="changeFilter()">
+				<option value="1" ng-selected="true">By Date</option>	
+				<option value="2">By State</option>	
+			</select>
+		</div> -->
+		
+		
+		
+		<div class="dis1" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		<input placeholder="From Date" id="from" ng-model="startDate" ng-change="applyFunction()" type="text" class="form-control " readonly>
+		<span  style="position: absolute; top: 6px;right: 10px;"><i class="fa fa-calendar"></i> 	</span>
+		</div>
+		<div class="dis1" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		
+		<input style="50%"  id="to" placeholder="To Date" ng-model="endDate"  ng-change="applyFunction()" type="text" class="form-control " readonly>	
+		<span style="position: absolute; top: 6px;right: 10px;"><i class="fa fa-calendar"></i>	</span>	
+		</div>
+		
+		
+		
+		<!-- <div class="dis2" style="border:1px solid #ccc; position: relative;padding:0px; float:left; display:none;">
+		<select class="form-control " ng-model="zone_name" ng-change="getStates()">
+		<option value="" selected disabled>Select Zone</option>	
+				<option value="{{z.zone_name}}" ng-repeat="z in zones">{{z.zone_name}}</option>	
+		</select>
+		</div>
+		<div class="dis2" style="border:1px solid #ccc; position: relative;padding:0px; float:left; display:none;">
+		
+		<select class="form-control " ng-model="filterState" ng-change="filterByState()">
+				<option value="" selected disabled>Select State</option>	
+				<option value="{{s.state_name}}" ng-repeat="s in states">{{s.state_name}}</option>	
+		</select>
+		</div> -->
+		
+		
+		
+		<div class="" style="padding-right:0px; float:left; margin:0 5px;">
+		<a class="btn btn-primary form-control"   ng-click="exportData()"><i class="fa fa-upload" aria-hidden="true"></i>
+&nbsp;Export</a>
+<!-- <button class="btn btn-grey pull-right" ng-click="exportData()" title="Export"><i class="fa fa-download"></i> Export</button>
+ -->
+		</div>
+		<div class="" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="initData()" >
+		<span style="position: absolute; top: 6px;right: 10px;"><a href="javascript:void(0);"><i class="fa fa-search"></i></a></span>
+		</div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="col-lg-12">	
+									<div class="row listing" style="margin-bottom:8px;">
+										<div class="col-lg-2">
+											<div class="item">
+												<a href="" class="form-control">
+													<!-- ngIf: ndArray.length == 0 --><div class="click_me">Select ND(s)</div><!-- end ngIf: ndArray.length == 0 -->
+													<!-- ngIf: ndArray.length > 0 --></a> 
+												 
+												<span class="dis_filt" style="display:none">
+													<ul id="ndList" ng-init="ndListFunc()">
+														<li class="">
+															<div class="checkbox">
+															  <label><input type="checkbox" id="ndAll" ng-model="checkNd"
+															>All</label>
+															</div>
+														</li>
+															<li ng-repeat="(key,value) in ndList">
+															<div class="checkbox">
+															  <label><input type="checkbox" class="allndList"  ng-model="ndList[value]" ng-change="changeNd()"  value="{{value}}">
+															  {{value}}
+															  </label>
+															</div>
+														</li><!-- end ngRepeat: x in AccountsList -->
+														
+													</ul>
+												</span>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="item">
+												<a href="" class="form-control">
+													<!-- ngIf: statesArray.length == 0 --><div  class="click_me1">Select Role(s)</div><!-- end ngIf: statesArray.length == 0 -->
+													<!-- ngIf: statesArray.length > 0 -->
+												</a> 
+												<span class="dis_filt1" style="display:none">
+													<ul id="statesList">
+														<li  class="">
+															<div class="checkbox">
+															  <label><input type="checkbox" id="roleAll" ng-model="r"  >All</label>
+															</div>
+															
+															
+														</li>
+														<li ng-repeat="(key,value) in role">
+															<div class="checkbox">
+															  <label><input type="checkbox" class="allroleList1" ng-model="key" ng-change="changeRole()"  value="{{key}}">
+															  {{value}}
+															  </label>
+															</div>
+														</li>
+														
+														<!-- ngRepeat: x in statesList -->
+													</ul>
+												</span>
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="item">
+												<a href="" class="form-control">
+													<!-- ngIf: rdsArray.length == 0 --><div class="click_me2">Select Status(s)</div><!-- end ngIf: rdsArray.length == 0 -->
+													<!-- ngIf: rdsArray.length > 0 -->
+												</a> 
+												<span class="dis_filt2" style="display:none">
+													<ul id="rdsList">
+														<li class="">
+															<div class="checkbox">
+															  <label><input type="checkbox" id="statusAll" ng-model="s" ng-change="changeStatus()">All</label>
+															</div>
+															
+														</li>
+														<li ng-repeat="(key,value) in status">
+															<div class="checkbox">
+															  <label><input type="checkbox" class="allstatusList" ng-model="statuslist[key]" ng-change="changeStatus()"  value="{{key}}">
+															  {{value}}
+															  </label>
+															</div>
+														</li>
+														<!-- ngRepeat: x in RDSList -->
+														
+													</ul>
+												</span>
+											</div>
+										</div>
+										
+										
+										
+										<div class="col-lg-2">
+											<div class="item">
+												
+												
+													<select class="form-control click_me3" ng-model="zone_name" ng-change="getStates()">
+							<option value="" >Select Zone</option>	
+							<option value="{{z.zone_name}}" ng-repeat="z in zones">{{z.zone_name}}</option>	
+						</select>
+											
+											</div>
+										</div>
+										<div class="col-lg-2">
+											<div class="item">
+												<a href="" class="form-control">
+													<!-- ngIf: retailerArray.length == 0 --><div class="click_me4">Select State(s)</div><!-- end ngIf: retailerArray.length == 0 -->
+													<!-- ngIf: retailerArray.length > 0 -->
+												</a> 
+												<span class="dis_filt4" style="display:none">
+													<ul id="retailerList">
+														<li >
+															<div class="checkbox">
+															  <label><input type="checkbox" id="statesAll" ng-model="sa" ng-change="changeStates()">All</label>
+															</div>
+														</li>
+														<li ng-repeat="s in states">
+															<div class="checkbox">
+															  <label><input type="checkbox" class="allstatesList" ng-model="statelist[s.state_name]"  ng-change="changeStates()" value="{{s.state_name}}">
+															 {{s.state_name}}
+															  </label>
+															</div>
+														</li>
+													</ul>
+												</span>
+											</div>
+										</div>										
+										<div class="col-lg-2">
+											<button  class="btn btn-primary" ng-click="resetAll()">
+												<!--<i class="fa fa-refresh fa-lg"></i>-->Reset
+											</button>
+											<button  style="margin-right:5px;" ng-click="initData()" class="btn btn-success pull-left">
+												Apply
+											</button>
+											
+										</div>
+										
+									</div>
+									
+									
+								</div>
+								
+								
+								
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box no-header clearfix">
+			<div class="main-box-body clearfix">
+				<div class="table-responsive">
+					<table class="table user-list table-hover wid">
+						<thead>
+							<tr>
+								 
+								
+								<th ng-click="sort('user_name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='user_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('nd_name')">Nd Name<span class="glyphicon sort-icon" ng-show="sortKey=='nd_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								
+								<th ng-click="sort('contact')">Mobile<span class="glyphicon sort-icon" ng-show="sortKey=='contact'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<!-- <th ng-click="sort('role')" >Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> -->
+								<th ng-click="sort('role')">Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('supervisor_name')" >Reporting manager<span class="glyphicon sort-icon" ng-show="sortKey=='supervisor_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('state')" >State<span class="glyphicon sort-icon" ng-show="sortKey=='state'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								<th ng-click="sort('last_login')">last login<span class="glyphicon sort-icon" ng-show="sortKey=='last_login'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('last_logout')">last logout<span class="glyphicon sort-icon" ng-show="sortKey=='last_logout'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							<th ng-click="sort('status')">status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<tr  ng-repeat="u in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) |orderBy:sortKey:reverse" ><!-- ng-if="u.role > userData.role" -->
+							
+							
+								<td>
+									{{u.user_name}}
+								
+								</td>
+								
+								<td>{{u.nd_name}}</td>
+								
+								<td>{{u.contact}}</td>
+								<td>{{u.role|userRole}}</td>
+								<td>{{u.supervisor_name}}</td>
+								<td>{{u.state}}</td>
+								<td ng-if="u.last_login ==''"></td>
+								<td ng-if="u.last_logout== '' "></td>
+								
+								<td ng-if="u.last_login != ''">{{u.last_login | date:"dd/MM/yyyy '' h:mm a"}}</td>
+								<td  ng-if="u.last_logout != ''">{{u.last_logout | date:"dd/MM/yyyy '' h:mm a"}}</td>
+
+								
+								
+								<td>
+									<span class="label label-{{u.status|statusClass}}">{{u.status|statusFilter}}</span>
+								</td>
+							<td>
+							<a data-toggle="modal" data-target="#add_new_cat" ng-if="u.module_access.length>0" ng-click="showDetail(u.user_id)"><i class="fa fa-eye" title="view" aria-hidden="true"></i></a>
+							</td>
+							</tr>
+							
+						</tbody>
+					</table>
+
+
+
+ <div style="display:none;" id="exportable">
+
+<table class="table user-list table-hover wid">
+						<thead>
+							<tr>
+								 
+								
+								<th ng-click="sort('user_name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='user_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th >Nd Name
+									
+								</th>
+								
+								
+								<th ng-click="sort('contact')">Mobile<span class="glyphicon sort-icon" ng-show="sortKey=='contact'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<!-- <th ng-click="sort('role')" >Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> -->
+								<th>
+									Role
+								</th>
+								<th ng-click="sort('supervisor_name')" >Reporting Manager<span class="glyphicon sort-icon" ng-show="sortKey=='supervisor_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('state')" >State<span class="glyphicon sort-icon" ng-show="sortKey=='state'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								
+								<th ng-click="sort('last_login')">last_login<span class="glyphicon sort-icon" ng-show="sortKey=='last_login'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('last_logout')">last_logout<span class="glyphicon sort-icon" ng-show="sortKey=='last_logout'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							<th>
+								Status
+							</th>
+							<th>Login time</th>
+							<th>Module</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<tr  ng-repeat="u in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) |orderBy:sortKey:reverse" ><!-- ng-if="u.role > userData.role" -->
+							
+							
+								<td>
+									{{u.user_name}}
+								
+								</td>
+								
+								<td>{{u.nd_name}}</td>
+								
+								<td>{{u.contact}}</td>
+								<td>{{u.role|userRole}}</td>
+								<td>{{u.supervisor_name}}</td>
+								<td>{{u.state}}</td>
+								
+								<td>{{u.last_login}}</td>
+								<td>{{u.last_logout}}</td>
+								
+								<td>
+									<span class="label label-{{u.status|statusClass}}">{{u.status|statusFilter}}</span>
+								</td>
+								<td >
+									<span ng-if="u.module_access.length>0" ng-repeat="x in u.module_access">{{x.login_time}}
+									</span>
+								</td>
+								<td >
+									<span ng-if="u.module_access.length>0" ng-repeat="x in u.module_access">{{x.module}}
+									</span>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+</div>
+
+
+
+
+					
+				</div>
+			</div>
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+<div class="modal fade" id="add_new_cat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Login Module Details</h4>
+      </div>
+      <div class="modal-body">
+      <div>
+			<!-- Nav tabs -->
+			    
+						<form>
+						<div class="main-box-body editbx">
+							<header class="main-box-header">
+								<form style="margin-bottom: 3%;margin-top:3%;overflow:hidden;">
+								
+								<div class="row">
+									<div class="table-responsive">
+										<table class="table table-bordered table-striped">
+											<thead>
+												<th style="width:50%;">Login Time</th>
+												<th>Access Module</th>
+											</thead>
+											<tbody>
+												<tr ng-repeat="m in moduleAccess">
+													<td>{{m.login_time}}</td>
+												
+													<td>{{m.module}}</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								</form>
+							</header>
+							
+						</div>
+						</form>
+				
+			</div> <!-- Add radio button tab start here -->
+      </div>
+ </div>
+  </div>
+</div>
+
+			

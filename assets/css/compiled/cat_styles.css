@@ -1,0 +1,204 @@
+h1.advn_tbl {float: left; margin-right: 20px;}
+h1.pull-left{margin-right: 20px;}
+.add_img_section {background: #fff;padding:40px 10px;margin-top:30px;}
+#content-wrapper{min-height:650px;}
+.gallery-photos.gallery-photos-hover{cursor: auto;}
+.gallery-photos.gallery-photos-hover li a{text-decoration:none;}
+.prfl_dtls .user_pfl_img_blk {box-shadow: 0 0 1px 1px #ccc; padding: 2px;}
+.prfl_dtls .prfl_deltaisl .cmmn_lbl{padding: 3px;clear: both;}
+.prfl_dtls .superviser_dtls .cmmn_lbl{padding: 3px;clear: both;}
+.red{color:#f00;}
+/* .gallery-photos li a:focus {border: 3px solid #E84E40;} */
+.gallery-photos li .photo-box.photo-box:focus {border: 3px solid #E84E40;}
+.photo_box_name{text-align:center;color:#fff;}
+.default_img {height: 125px;overflow: hidden; float: right;}
+.default_img img{max-height:100%;}
+.custm_dropdown .dropzone{min-height:240px;}
+#exampleTextarea .btn-toolbar div.btn-group:last-child {display: none;}
+.img_edit_user{height:77px; float:right;}
+.img_edit_user img{max-width:100%;height:100%;}
+#gallery-photos-wrapper .mbl_app_bnnr{font-size: 18px;padding-top: 20px;}
+table tr td a.user-link{font-size: 16px !important;font-weight: 400;}
+.tbl_img{width:50px;height:50px;overflow:hidden;border-radius:10px;float:left;}
+.tbl_img img{width:100%;height:50px;}
+.dropzone.custm_dropzone{min-height:300px;}
+table tr td .dis_criptn	{overflow: hidden;text-overflow: ellipsis; white-space: nowrap; display: inline-block;    background: transparent; width: 100px;}
+table tr td .dis_criptn2{overflow: hidden;text-overflow: ellipsis; white-space: nowrap; display: inline-block;    background: transparent; width: 200px;}
+ #gallery-photos li .dis_criptn	{overflow: hidden;text-overflow: ellipsis; white-space: nowrap; display: inline-block;    background: transparent; width: 140px;}
+ .gallery-photos .thumb-meta-time.dis_criptn	{overflow: hidden;text-overflow: ellipsis; white-space: nowrap; display: inline-block;    background: transparent; width: 100px;}
+#add_new_cat  header.main-box-header{clear: both; overflow: hidden;margin-bottom: 10px;margin-top:10px;}
+#add_new_docmnt  header.main-box-header{clear: both; overflow: hidden;margin-bottom: 10px;margin-top:10px;}
+#maskedDate {line-height: 16px;}
+
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.simpleDemo ul[dnd-list],
+.simpleDemo ul[dnd-list] > li {
+	position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ddd;
+    min-height: 42px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.simpleDemo ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+/**
+ * Show selected elements in green
+ */
+/* .simpleDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+} */
+ .simpleDemo ul[dnd-list] li:hover {
+    background-color: #E7EBEE;
+    color: #E84E66;
+} 
+span.new_span_img {
+    margin-left: 4%;
+}
+.gallery-photos li .photo-box{border:solid 3px #fff;}
+.gallery-photos li .photo-box.active{border-color:#e84e40;}
+ .right-check{ float: right;  margin-top: 10px; font-size: 15px; font-weight: bold;}
+ .right-check label{font-weight:bold; }
+.shorting-block{display:inline-block; vertical-align:top;  margin-left:20px; padding-top:5px;}
+.shorting-block select{border-color:#CFD1D2;}
+.right_buttons{float:right; padding-top:6px;}
+.mnge_pduct{width: 57%;}
+.mnge_pduct select{width: 23%;float:left;}
+
+
+.news_tbl.user-list tbody td .user-link {
+    margin-left: 0px;
+}
+
+
+.mainWrapper{ margin-bottom:20px;}
+.headerName{ background:#fec240; color: #fff;  display: block; font-size: 1.2em; font-weight: 500; padding: 10px 15px; border-radius: 3px 3px 0 0; background-clip: padding-box; transition: background-color 0.1s ease-in-out 0s;}
+.bodyContainer{padding: 16px 15px; background:#FFF; margin-bottom:20px;}
+
+.Rname {
+    text-align: left;
+    display: block;
+    clear: both;
+    background-color: #cdcdcd;
+    padding: 7px 15px;
+}
+.Rname h3 {
+    display: inline;
+    padding-right: 20px!important;
+}
+.Rname span {
+    display: inline-block;
+    font-size: 12px;
+    color: #999;
+}
+.appdate{padding-left:30px;}
+.warningborder{border:1px solid #ffc107;}
+.warningborder .label-warning {
+    background-color: transparent;
+    border-color: #ffc107;
+}
+/* select option:empty {
+display:none
+} */
+/*select width start*/
+.item span ul {
+    margin: 0px;
+    padding: 0px;
+}
+.wid th {
+	width:150px;
+}
+.wid th:nth-child(2){
+width:220px;}
+.right_buttons .dis2, .right_buttons .dis1{
+width:120px;
+}
+.dis1{
+border:1px solid #ccc; position: relative;padding:0px; float:left;width:120px !important;}
+ul li{
+list-style:none;
+}
+.listing .item span {
+    z-index: 999;
+	 position: absolute;
+}
+
+.item span {
+    position: absolute;
+    height: 250px;
+}
+.item span {
+    display: block;
+    border: 1px solid #ddd;
+    padding: 9px;
+    list-style: none;
+    height: 180px;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    background: #fff;
+}
+.click_me4{
+white-space: nowrap;
+overflow:hidden;
+
+}
+.dis_filt4{
+display: block;
+    overflow-y: inherit;
+    width: 180px !important;
+    height: inherit;
+	}
+/*select width end*/
+
+.title_elipse
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

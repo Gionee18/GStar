@@ -1,0 +1,199 @@
+<authentication></authentication>
+<style>
+.main-box-header input {
+margin-top:10px !important;
+}
+.editbx input,  .editbx select, .editbx textarea{
+    margin-bottom: 15px;
+}
+</style>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl"><a href="#/tutorial/manage-tutorial"><i class="fa fa-arrow-circle-left" aria-hidden="true" ></i></a>Video List</h1>
+		<div class="row"></div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+		
+			<div class="shorting-block">
+				<select ng-model="itemsPerPage" class="form-control">
+					<option value="10">10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
+			<div class="right_buttons mnge_pduct">				
+				<span style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;"><input ng-model="search" placeholder="Search" ng-change="getSearchData()" type="text" class="form-control">
+					<span style="position: absolute;top: 6px;right: 7px;z-index: 999; background: #fff; cursor: pointer; padding: 0 3px;">
+						<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+					</span>
+				</span>
+			
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box Cbox clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list" ng-init="init()">
+						<thead>
+							<tr>
+							
+							   <th ng-click="sort('title')" >title<span class="glyphicon sort-icon" ng-show="sortKey=='title'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							    <th ng-click="sort('short_description')" >desc<span class="glyphicon sort-icon" ng-show="sortKey=='short_description'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   <th ng-click="sort('status')" >status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   
+							  <!--  <th ng-click="sort('youtube_url')" >youtube_url<span class="glyphicon sort-icon" ng-show="sortKey=='youtube_url'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> -->
+							   <th ng-click="sort('created_at')" >created at<span class="glyphicon sort-icon" ng-show="sortKey=='created_at'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   <th ng-click="sort('updated_at')" >updated at<span class="glyphicon sort-icon" ng-show="sortKey=='updated_at'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> 
+							   <th ng-click="sort('thumbnail')" >thumbnail<span class="glyphicon sort-icon" ng-show="sortKey=='thumbnail'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   <th ng-click="sort('duration')" >duration<span class="glyphicon sort-icon" ng-show="sortKey=='duration'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="list in videoList.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))|orderBy:sortKey:reverse">
+						
+								
+								<td>{{list.title}}</td>
+								<td>{{list.short_description}}</td>
+								<td>{{list.status | statusFilter}}</td>
+								<!-- <td><a href="{{list.youtube_url}}" target="_blank">{{list.youtube_url}}</a></td> -->
+								 <td>{{list.created_at}}</td>
+								<td>{{list.updated_at}}</td> 
+								<td><img src="{{list.thumbnail}}"></td>
+								<td>{{list.duration}}</td>
+								
+								
+								<td class="text-center">
+								<a data-toggle="modal" data-target="#add_new_cat" ng-click="editVideoFunct(list.video_id)" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<span class="fa-stack">
+									<i class="fa fa-square fa-stack-2x"></i>
+									<a href="{{list.youtube_url}}" target="_blank">
+									<i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+									</a>
+									</span>
+									<a href="javascript:void(0);" class="table-link danger" ng-click="deleteVideo(list.video_id)">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+			
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+
+
+<!--  For add image gallery popup start  -->
+<div class="modal fade" id="add_new_cat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Edit Video</h4>
+      </div>
+      <div class="modal-body">
+      <div>
+			<!-- Nav tabs -->
+			    
+						<form ng-submit="submitEditVideo()">
+						<div class="main-box-body editbx">
+							<header class="main-box-header">
+								<form style="margin-bottom: 3%;margin-top:3%;overflow:hidden;">
+								<div class="row">
+								<div class="col-sm-3"> 
+								<label>Title<span class="red">*</span></label></div>
+								<div class="col-sm-9" > 
+								<input type="text"  class="form-control" ng-model="editData.title"  maxlength="50" name="" id="" required>
+								</div>
+
+								</div>
+								<div class="row">
+								<div class="col-sm-3"> 
+								<label for="message-text" class="control-label">Select Category<span class="required">*</span>
+								</label>
+								</div>
+								 <div class="col-sm-9" > 
+									<select class="form-control" ng-model="editData.category_id" ng-change="selectProduct(editData.category_id)" required>
+										<option value="">Select</option>
+										<option ng-repeat="single in catList" value="{{single.id}}">{{single.category_name}}</option>
+									</select>
+								</div>
+								
+								
+								</div>
+								<div class="row">
+								<div class="col-sm-3"> 
+								<label for="message-text" class="control-label">Select Model<span class="required">*</span></label></div>
+								<div class="col-sm-9" > 
+								<select class="form-control" ng-disabled="showModel" ng-model="editData.product_id" required >
+									<option value="" >Select</option>
+									<option ng-repeat="s in productList" value="{{s.id}}" ng-selected="s.id == editData.product_id">{{s.product_name}}</option>
+								</select>
+							
+								
+								</div>
+								</div>
+								
+								<div class="row">
+								<div class="col-sm-3"> <label>short description<span class="red">*</span></label></div>
+								<div class="col-sm-9" >
+								<textarea class="form-control" rows="3" ng-model="editData.short_description"  name="" id="" required></textarea>
+								</div>
+								</div>
+								
+								<div class="row">
+								
+							<div class="col-sm-3"><label>Status<span class="required">*</span></label></div>
+							<div class="col-sm-9" > 
+							<select class="form-control"  ng-model="editData.status" ng-disabled="userData.id == usr_id" required>
+								<option value=''>Select</option>
+								<option value='1'>Active</option>
+								<option value='0'>Inactive</option>
+							</select>
+							</div>
+								</div>
+
+								
+
+								</form>
+							</header>
+							
+						
+							<button type="submit" class="btn btn-primary"> Save</button>
+							<button type="button" id="cancel" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+						</div>
+						</form>
+				
+			</div> <!-- Add radio button tab start here -->
+      </div>
+ </div>
+  </div>
+</div>

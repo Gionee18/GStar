@@ -1,0 +1,165 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>view profile</span></li>
+		</ol> -->
+		
+		<div class="clearfix">
+			<h1 class="pull-left">User Profile</h1>
+			
+			
+			<div class="col-md-5 col-sm-7 pull-right top-page-ui">				
+			
+				<!-- <div class="col-md-4 col-sm-4" style="float:right;"><a data-match-route="/admin/edit-user" ng-hide="userData.role == 10" href="#/admin/edit-user/{{detailUser.id}}"  class="btn btn-primary form-control"><i class="fa fa-plus-circle fa-lg"></i>&nbsp;Edit Profile </a></div> -->
+				<div class="col-md-4 col-sm-4" style="float:right;"><a data-match-route="/admin/edit-user"  href="#/admin/edit-user/{{detailUser.id}}"  class="btn btn-primary form-control"><i class="fa fa-plus-circle fa-lg"></i>&nbsp;Edit Profile </a></div>
+			</div>
+		</div>
+			
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box no-header clearfix">			
+		
+		<!-- main box body start here -->
+		<div class="main-box-body prfl_dtls clearfix">
+			
+			<!--  col-sm-4 start here -->
+			<div class="col-md-3 col-sm-4">
+				<div class="user_pfl_img_blk">
+					<span ng-if="imgSrc"><img src="{{imgSrc}}" alt="" class="profile-img img-responsive center-block"></span>
+					<span ng-if="!imgSrc"><img src="assets\img\profile.jpg" alt="" class="profile-img img-responsive center-block"></span>
+				
+				</div>
+				
+			</div>
+			<!-- Col-sm-4 end here -->
+			
+			<div class="col-md-8 col-md-offset-1 col-sm-7 col-sm-offset-1">
+				<div class="prfl_deltaisl">
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Name :</label>
+						<div class="col-sm-8">{{detailUser.first_name+' '+detailUser.last_name}}  </div>
+					</div>
+				
+						<div class="cmmn_lbl">
+						<label class="col-sm-4">Email Id :</label>
+						<div class="col-sm-8">{{detailUser.email}} </div>
+					</div>
+			
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Role :</label>
+						<div class="col-sm-8">{{detailUser.role}}</div>
+					</div>
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Phone :</label>
+						<div class="col-sm-8">{{detailUser.contact}}</div>
+					</div>
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Gender :</label>
+						<div class="col-sm-8">{{detailUser.gender}}</div>
+
+					</div>
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">D.O.B :</label>
+						<div class="col-sm-8">{{detailUser.dob}}</div>
+
+					</div>
+					
+					
+					
+				</div>
+			</div>	
+			<!-- Col-sm-8 end here -->
+		</div>
+		<!-- Main box-body  end here -->
+		</div>
+	</div>
+</div>
+<!--  Row end here -->
+
+<div class="row" ng-show='userData.role >= 10' >
+	<div class="col-lg-12">
+		<div class="main-box no-header clearfix">			
+		
+		<!-- main box body start here -->
+		<div class="main-box-body prfl_dtls clearfix">
+			<div class="superviser_dtls">
+			<h2>Supervisor Details :</h2>
+			<div class="col-sm-6">
+					<div class="cmmn_blk_lyut">
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Name :</label>
+						<div class="col-sm-8">{{supervisorDetailedUser.sp_name}}  </div>
+					</div>
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Email Id :</label>
+						<div class="col-sm-8">{{supervisorDetailedUser.sp_email}}   </div>
+					</div>
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Phone :</label>
+						<div class="col-sm-8">{{supervisorDetailedUser.phone}}  </div>
+					</div>
+					</div>
+				
+			</div>
+			<div class="col-sm-6">
+				<div class="cmmn_blk_lyut">
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">City/Town :</label>
+						<div class="col-sm-8">{{supervisorDetailedUser.city_name}}  </div>
+					</div>
+						 
+		
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">State :</label>
+						<div class="col-sm-8">{{supervisorDetailedUser.state_name}}</div>
+					</div>
+					
+					<div class="cmmn_lbl">
+						<label class="col-sm-4">Zone :</label>
+						<div class="col-sm-8">{{supervisorDetailedUser.zone_name}} </div>
+					</div>
+					</div>
+			</div>
+
+			<div class="col-sm-6" style="margin-top: 20px;">
+			<div class="cmmn_blk_lyut">
+				<div class="cmmn_lbl">
+				<label class="col-sm-4">Beat route ID </label>
+						<div class="col-sm-8">{{supervisorDetailedUser.beat_route_id}}</div>
+		
+				</div>
+				
+				<div class="cmmn_lbl">
+				<label class="col-sm-4">RT Code  </label>
+						<div class="col-sm-8">{{supervisorDetailedUser.rt_code}} </div>
+				</div>
+					
+				<div class="cmmn_lbl">
+					<label class="col-sm-4">ND Name :</label>
+					<div class="col-sm-8">{{supervisorDetailedUser.nd_name}} </div>
+				</div>
+				
+				<div class="cmmn_lbl">
+					<label class="col-sm-4">RD Name  :</label>
+					<div class="col-sm-8">{{supervisorDetailedUser.rd_name}} </div>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+		</div>
+	</div>
+</div>

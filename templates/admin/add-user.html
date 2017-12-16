@@ -1,0 +1,255 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>Users</span></li>
+		</ol> -->
+		
+		<div class="clearfix">
+			<h1 class="pull-left advn_tbl"><back></back>&nbsp;&nbsp;Users</h1>
+		</div>
+	</div>
+</div>
+<div class="row">
+
+	<div class="col-lg-12">
+		<div class="main-box no-header clearfix">			
+			<!-- First main box body start here -->
+			<form id="form"  method="" ng-submit="addUser()">
+			<div class="main-box-body clearfix">
+				
+
+					<h3>User Details</h3>
+					<div class="col-md-6">
+						
+					<div class="form-group">
+						<label for="">First Name<span class="required">*</span></label>
+						<input type="text" class="form-control" ng-model="addUser.first_name"  maxlength="20" id="" placeholder="Enter First Name" required>
+					</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="form-group">
+						    <label for="">Last Name<span class="required">*</span></label>
+							<input type="text" class="form-control" ng-model="addUser.last_name" id=""  maxlength="20"  placeholder="Enter Last Name" required >
+						</div>
+					</div>
+					
+					
+					<div class="col-md-6">	
+						<div class="form-group">
+							<label for="">Email Id<span class="required">*</span></label>
+							<input type="email" class="form-control" ng-model="addUser.email"  maxlength="40" id="" placeholder="Enter email" required>
+						</div>
+					</div>
+					<div class="col-md-6">
+					<div class="col-md-6">
+						<div class="form-group" style="min-height: 57px;">
+							<label for="">Profile Picture
+							<input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(this)" file-model="addUser.profile_picture" id="profilePic" />
+						</div>
+						</div>
+						<div class="col-md-6" style="overflow:hidden;">
+						<div class="img_edit_user" ng-repeat="step in stepsModel"  >
+							<img ng-src="{{step}}" />	
+						</div>
+						</div>
+						</div>
+					
+					
+						<div class="col-md-6"style="clear:both;">
+					<div class="form-group">
+						<label for="">Password<span class="required">*</span></label>
+						<input type="password" class="form-control" id="" ng-model="addUser.password"  maxlength="20"  placeholder="Enter password" required>
+					</div>
+					</div>
+					<div class="col-md-6">
+					<div class="form-group">
+						<label for="">Confirm Password<span class="required">*</span></label>
+						<input type="password" class="form-control"  ng-model="addUser.confirm_password" id=""  maxlength="20"  placeholder="Enter Confirm Password" required>
+					</div>
+					</div>
+						
+					<div class="col-md-6" >
+						<div class="form-group">
+						<label>Role<span class="required">*</span></label>
+						<select class="form-control"  ng-model="addUser.role" ng-change="changeRole()" required>
+							<option ng-selected="true" value="">Select</option>
+							
+							<!-- <option ng-if="userData.role < 20" value="20">Trainer</option> -->
+							<option ng-if="userData.role < 10" value="10">Admin</option>
+							<option ng-if="userData.role < 20" value="20">Trainer</option>
+							<option ng-if="userData.role < 30" value="30">Supervisor</option>
+							<option value="40">Learner</option>
+						</select>
+					</div>
+					</div>
+					
+						<div class="col-md-6" >
+						<div class="form-group">
+							<label>{{showrole}}<span class="required">*</span></label>
+							<select class="form-control" ng-model="addUser.sp_id" required>
+								<option value="" selected >Select</option>								
+								<option ng-repeat="res in supervisorsList" ng-if="addUser.role" value="{{res.id}}">{{res.first_name+' '+res.last_name}} </option>								
+							</select>
+						</div>
+						</div>
+						<div class="col-md-6" >
+					<div class="form-group">
+						<label for="">Mobile (format : 9876543210)<span class="required">*</span></label>
+						<input type="text" pattern="[789][0-9]{9}" class="form-control" ng-model="addUser.contact" maxlength="20" id="" placeholder="Enter Mobile No" required>
+						
+					</div>
+					</div>
+						<div class="col-md-6">
+						<div class="form-group">
+						<label>Status<span class="required">*</span></label>
+						<select class="form-control" ng-model="addUser.status" required>
+							<option value="">Select</option>
+							<option value='1' selected="selected">Active</option>
+							<option value='0'>Inactive</option>
+							
+						</select>
+					</div>
+					</div>
+					
+					<div class="col-md-6">	
+					<div class="form-group">
+						<label for="maskedDate">D.O.B<span class="required">*</span></label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							<input type="text" placeholder="Date of birth" class="form-control" ng-model="addUser.dob" readonly id="maskedDate" required>
+						</div>
+						<span class="help-block">ex. DD-MM-YYYY</span>
+					</div>
+				
+					
+					
+					</div>  <!--  First col-md-6 end here -->
+					
+					 <!-- Second  First col-md-6 end here -->
+					 
+					
+							
+							
+						
+								
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="gender">Gender<span class="required">*</span></label>
+								<div class="usr_gndr" style="padding-top:5px;">
+									<input type="radio" ng-checked="true" name="user_gender" id="" ng-model="addUser.gender"  value="male" ><label style="vertical-align:middle;margin-left:2px;">Male</label>
+									<input type="radio" name="user_gender" id="" ng-model="addUser.gender" value="female"><label style="vertical-align:middle;margin-left:2px;">Female</label>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>  <!-- Second col-md-6 end here -->
+				
+		
+		<!-- First Main box-body  end here -->
+		
+		<!-- Second main box body start here -->
+		<div class="main-box-body clearfix">
+				
+					
+				  <!-- First row end here -->
+					
+					<div class="row">
+						<h4>Address</h4>
+						
+						<div class="col-md-6">
+						<div class="form-group">
+							<label>Zone</label>
+							<select class="form-control" ng-model="addUser.zone_name" ng-change="getStates()">
+								<option ng-selected="true" value="">Select</option>
+								<option ng-repeat="z in zones" value="{{z.zone_name}}">{{z.zone_name}}</option>
+							</select>
+						</div>
+						</div>
+						
+						<div class="col-md-6">  <!-- second col-md-6 start here -->
+							<div class="form-group">
+							<label>State</label>
+							<select class="form-control" ng-model="addUser.state_name" ng-change="getCites()">
+								<option ng-selected="true" value="">Select</option>
+								<option ng-repeat="s in states" value="{{s.state_name}}">{{s.state_name}}</option>
+							</select>
+						</div>
+						</div> 
+						
+						<div class="col-md-6">  <!-- First col-md-6 start here -->
+						
+						<div class="form-group">
+							<label>City/Town</label>
+							<select class="form-control" ng-model="addUser.city_name" >
+								<option ng-selected="true" value="">Select</option>
+								<option ng-repeat="c in cites" value="{{c.city_name}}">{{c.city_name}}</option>
+							</select>
+						</div>
+					
+						</div>
+										
+				
+					  <!-- First col-md-6 end here -->
+						 <!-- second col-md-6 end here -->
+					</div>  <!-- Second row end here -->
+					
+					<div class="row">
+						<h4>Others</h4>
+						<div class="col-md-6">  <!-- First col-md-6 start here -->
+							<div class="form-group">
+								<label for="">Beat route ID</label>
+								<input type="text" class="form-control" ng-model="addUser.beat_route_id"  maxlength="20"  id="" placeholder="Enter beat route id" >
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>ND Name</label>
+								<select class="form-control" ng-model="addUser.nd_name" ng-change="getRDs()" >
+									<option value="">Select</option>
+									<option ng-repeat="x in NDs" value="{{x}}">{{x}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>RD Name</label>
+								<select class="form-control"ng-model="addUser.rd_name" ng-change="getRTs()" >
+									<option ng-selected="true" value="">Select</option>
+									<option ng-repeat="x in RDs" value="{{x}}">{{x}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-6">  <!-- second col-md-6 start here -->
+							<div class="form-group">
+								<label for="">RT Code</label>
+								<!-- <input type="text" class="form-control" id="" ng-model="addUser.rt_code"  maxlength="20" placeholder="Enter RT Code" required> -->
+								<select class="form-control"ng-model="addUser.rt_code" >
+									<option ng-selected="true" value="">Select</option>
+									<option ng-repeat="x in RTs" value="{{x.retailer_name}}">{{x.retailer_name}}</option>
+								</select>
+							</div>
+						</div>
+
+					</div>  <!-- Third row end here -->
+					<div class="row">
+						<div class="col-xs-12">
+							<button type="submit" class="btn btn-primary" >Save</button>
+							<a type="button" class="btn btn-default" data-match-route="/admin/users" href="#/admin/users">Cancel</a>
+						</div>
+						
+					</div>
+				
+			</div>
+		<!-- Main box-body  end here -->
+		</form>
+		</div>
+	</div>
+	
+</div>

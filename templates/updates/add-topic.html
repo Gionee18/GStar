@@ -1,0 +1,107 @@
+<authentication></authentication>
+<div class="row">
+<div class="col-lg-12">	<h1 class="advn_tbl"><back></back>&nbsp;Add Updates Topic</h1>	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+			<!-- Form start here -->
+
+			<form style="padding-top:15px;" ng-submit="addTopicData()">
+
+			<div class="col-sm-6">
+			  <div class="form-group">
+				<label for="recipient-name" class="control-label">Title<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text" ng-model="addTopic.topic_name" maxlength="255" class="form-control" id="recipient-name" required>
+			   </div>
+			  </div>
+			
+			<div class="form-group">
+				<label for="message-text" class="control-label">Status<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select ng-model="addTopic.status" ng-options="item.value as item.name for item in CatStatus" class="form-control" required>
+						<option value="">Select</option>
+					</select>
+				</div>
+			  </div>
+			<div class="form-group">
+				<label for="message-text" class="control-label">Send Notification(s) To<span class="required">*</span></label>
+				  <div class="cmmn_input ucb">
+				<span><input type="checkbox" id="id1" name="chk1" value="notification_admin" ng-model="addTopic.notification_admin">&nbsp;Admin&nbsp;</span>
+				<span><input type="checkbox"  id ="id2" name="chk2" value="notification_trainer" ng-model="addTopic.notification_trainer">&nbsp;Trainer </span>
+				<span><input type="checkbox"  id ="id3" name="chk3" value="notification_supervisor" ng-model="addTopic.notification_supervisor">&nbsp;Supervisor</span>	
+				<span><input type="checkbox"  id ="id4" name="chk4" value="notification_learner" ng-model="addTopic.notification_learner">&nbsp;Learner	</span>	
+				
+					
+			  </div>
+			  </div>
+			</div>   <!-- col-sm-6 end here  -->
+				
+
+				<div class="col-sm-6">
+				
+					<div class="form-group">
+						<label for="message-text" class="control-label">Category<span class="required">*</span></label>
+						  <div class="cmmn_input">
+							<!-- <select ng-model="addTopic.category_id" ng-options="cat.id as cat.category_name for cat  in categoryList" class="form-control" required>
+								 <option value=''>Select</option>
+							</select> -->
+							<select  ng-model="addTopic.category_id" ng-change="changeSubcat(addTopic.category_id)" class="form-control" required >
+							<option value="">Select</option>
+							<option ng-repeat="cat in categoryList" value="{{cat.id}}">{{cat.category_name}}</option>
+							</select>
+						  </div>
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="control-label">Sub-Category<span class="required">*</span></label>
+						  <div class="cmmn_input">
+							<!-- <select ng-model="addTopic.subcategory_id"  ng-disabled="!addTopic.category_id" ng-options="scat.id as scat.subcategory_name for scat in ((categoryList | filter:{'id':addTopic.category_id})[0].subcat)" class="form-control" required>
+								<option value="">Select</option>
+								
+							</select> -->
+							<select ng-model="addTopic.subcategory_id" ng-disabled="!addTopic.category_id"  class="form-control" required>
+								<option value="">Select</option>
+								<option ng-repeat="scat in subcatList" value="{{scat.id}}">{{scat.subcategory_name}}</option>
+							</select>
+						  </div>
+					</div>
+					<div class="form-group">
+					<label for="message-text" class="control-label">Expiry Date</label>
+					<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							<input type="text" class="form-control" ng-model="addTopic.expired_on" readonly id="maskedDate" >
+						</div>
+					</div>
+			</div>   <!-- col-sm-6 end here  -->
+			<div class="col-sm-12">
+				<div class="form-group">
+				<label for="message-text" class="control-label">Description<span class="required">*</span></label>
+				  <div class="cmmn_input">
+				 <textarea ui-tinymce="tinymceOptions" ng-model="addTopic.topic_desc" maxlength="255" style="min-height:260px;" required></textarea>
+			  </div>
+			  </div>
+			</div>
+			
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a type="button" class="btn btn-default" data-match-route="/updates/topic-listing" href="#/updates/topic-listing">Cancel</a>
+			</div>
+			</form>
+			
+			<!-- Form end here -->
+			
+</div>  <!-- Main box body end here -->
+		</div>
+	</div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,471 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl"><back></back>&nbsp; Edit Product</h1>
+		
+		
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+			<!-- Form start here -->
+
+			<form style="padding-top:15px;" ng-submit="editProduct()">
+
+			<div class="col-sm-6">
+			  <div class="form-group">
+				<label for="recipient-name" class="control-label">Name<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text" ng-model="editProd.product_name" maxlength="50" class="form-control" id="recipient-name" required>
+			   </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="message-text" class="control-label">Category<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select class="form-control" ng-model="editProd.category_id" required>
+						<option value="">Select</option>
+						<option ng-repeat="single in dataParentCat" value="{{single.id}}">{{single.category_name}}</option>
+					</select>
+				</div>
+			  </div>
+			  
+			<div class="form-group">
+				<label for="message-text" class="control-label">Status<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select ng-model="editProd.status" ng-options="item.value as item.name for item in CatStatus" class="form-control" required>
+						<option value="">Select</option>
+					</select>
+				</div>
+			  </div>				  
+			</div>   <!-- col-sm-6 end here  -->
+				
+
+			<div class="col-sm-6">		   
+				<div class="form-group">
+					<label for="message-text" class="control-label">Description<span class="required">*</span></label>
+					<div class="cmmn_input">
+						<textarea ng-model="editProd.product_desc"  maxlength="255" class="form-control" style="min-height:190px;" required></textarea>
+					</div>
+				</div>
+			</div>   <!-- col-sm-6 end here  -->
+			
+			<div class="col-sm-6">		   
+				<div class="form-group">
+				<input type="checkbox" ng-model="editProd.new_product" ng-true-value="1" ng-false-value="0">
+					<label for="message-text" class="control-label">New</label>
+					
+				</div>
+			</div> 
+			<div class="col-sm-6">		   
+				<label for="recipient-name" class="control-label">Launch Date<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text" id="from" ng-model="editProd.launch_date" maxlength="50" class="form-control" readonly required>
+					
+			   </div>
+			</div>
+			
+			<!--  CK text editor start here  -->
+			
+			<div class="row">
+								<div class="col-lg-12">
+									<div class="main-box clearfix" style="min-height: 520px;margin-top: 50px;">
+										<div class="main-box-body clearfix">
+											
+											<div>
+			<!-- Nav tabs -->
+			    <tabset justified="false">
+					 <tab heading="Overview">
+						<div class="main-box" style="margin-top:2%;overflow:hidden;">
+													
+							<div class="main-box-body">
+								<div id="form-group" class="form-group">
+									
+									  <textarea ui-tinymce="tinymceOptions" ng-model="editProd.overview"></textarea>
+   
+							</div>
+							</div>
+						</div>
+					</tab>
+					<script>
+    $(window).load(function() {
+      var this_scope = angular.element($('#form-group')).scope();
+      this_scope.from_js = {
+        "from_js": "<em>italic data in page javascript in head</em>"
+      };
+      this_scope.$apply();
+    });
+  </script>
+					<tab heading="Specifications">
+					
+						<div class="main-box" style="margin-top:2%;overflow:hidden;">
+							
+							<div class="main-box-body" >
+								<div class="form-group">
+								<!-- 	<div text-angular ta-text-editor-class="border-around container form-control uptexteditor" ta-html-editor-class="border-around container form-control" ng-model="editProd.specification" id="exampleTextarea" class="focussed uptexteditor" ></div> -->
+									
+									  <textarea ui-tinymce="tinymceOptions" ng-model="editProd.specification"></textarea>
+								</div>
+							</div>
+						</div>
+					</tab>
+				
+					<!-- <tab heading="Assets">
+							<div class="main-box" style="margin-top:2%;overflow:hidden;">
+																
+								<div class="main-box-body">
+									<div class="form-group">
+										<textarea class="form-control " ng-model="editProd.assets" style="min-height:350px;" id="exampleTextarea" rows="3"></textarea>
+									</div>
+								</div>
+							</div>
+					</tab>  -->
+				</tabset>
+				
+				
+			</div> <!-- Add radio button tab end here -->
+			<!--  CK Text editor end here -->
+			
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a type="button" class="btn btn-default" data-match-route="/products/manage-products" href="#/products/manage-products">Cancel</a>
+			</div>
+			</form>
+			
+			<!-- Form end here -->
+			
+					
+	
+			</div>  <!-- Main box body end here -->
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+ <section class="add_img_section" ng-if="userData.role < 15">
+	<div class="row">
+		<div class="col-lg-12">
+		<div class="main-box">
+			<div class="main-box-body">
+			<div class="add_img_blk">
+			<a type="button"  class="btn btn-primary" ng-if="editProd.spec_status == 0 && userData.role < 15" href="#/specification/add-specification/{{id}}/gionee" >Add Specifications</a><br><br>
+				<a type="button"  class="btn btn-primary" ng-if="editProd.spec_status == 1&& userData.role < 15" href="#/specification/edit-specification/{{id}}/gionee">Edit Specifications</a>
+			<!-- 	<a type="button"  class="btn btn-primary" href="#/products/add-specification/{{id}}">Add Specification</a><br><br>
+				<a type="button"  class="btn btn-primary" href="#/products/edit-specification/{{id}}">Edit Specification</a> -->
+				</div>
+			</div>
+			</div>
+		</div>									
+	</div>
+</section> 
+	
+
+
+
+<section class="add_img_section">
+	<div class="row">
+		<div class="col-lg-12">
+		<div class="main-box">
+			<div class="main-box-body">
+			<div class="add_img_blk">
+				<button type="button" data-toggle="modal" data-target="#add_new_cat" class="btn btn-primary">Add Image</button>
+			</div>
+			</div>
+			</div>
+		</div>									
+	</div>
+</section>
+
+
+<!-- Gallery image start here  -->
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box">
+				
+				
+				<div class="main-box-body">
+					<div id="gallery-photos-wrapper">
+						<ul id="gallery-photos" class="clearfix gallery-photos gallery-photos-hover ui-sortable">
+						
+							<li ng-repeat="x in thisCatImages" id="recordsArray_{{x.id}}" class="col-md-2 col-sm-3 col-xs-6">
+								<div class="photo-box" style="background-image: url('{{baseUrl}}/{{x.path}}/thumbnail/{{x.name}}');">
+									<div class="photo_box_name">{{x.title}}</div>
+								</div>
+								<a href="javascript:void(0);" class="remove-photo-link">
+									<span ng-click="deleteImage(x.id)" class="fa-stack fa-lg">
+										<i class="fa fa-circle fa-stack-2x"></i>
+										<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+									</span>
+								</a>
+							</li>
+							
+							
+						</ul>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+
+<!-- Gallery image end here  -->
+
+<!-- Add document popup button start here -->
+
+
+<section class="add_img_section">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box">
+			<div class="main-box-body">
+			<div class="add_img_blk">
+				<button type="button" data-toggle="modal" data-target="#add_new_docmnt" class="btn btn-primary">Add Document/Video</button>
+			</div>
+			</div>
+			</div>
+		</div>									
+	</div>
+</section>
+
+<!-- Add document popup button start here -->
+
+<!-- Add document start here -->
+	
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="main-box">
+					
+					
+					<div class="main-box-body">
+						<div id="gallery-photos-wrapper">
+							<ul id="gallery-photos" class="clearfix gallery-photos gallery-photos-hover ui-sortable">
+							<!--  thisCatDocs --->
+								<li ng-repeat="x in thisCatDocs" id="recordsArray_{{x.id}}" class="col-md-2 col-sm-3 col-xs-6">
+									<div class="photo-box" style="background-image: url('{{x.type|docsIcons}}');">
+										<div class="photo_box_name">{{x.title}}</div>
+									</div>
+									<a href="javascript:void(0);" ng-click="deleteDocs(x.id)" class="remove-photo-link">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+										
+									</a>
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+			<!-- Main-box-end here  -->	
+
+
+<!-- Add document end here -->
+
+
+<!-- this page specific inline scripts -->
+
+
+<!--  For add image gallery popup start  -->
+<div class="modal fade" id="add_new_cat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Add Product Image</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Add radio button tab start here -->
+			<div>
+			<!-- Nav tabs -->
+			    <tabset justified="false"> 
+					<tab heading="Add from Library">
+					<!--  Popup image gallery start here -->
+						<form ng-submit="submitGallaryImage()">
+						
+							<div class="main-box-body">
+								<div id="gallery-photos-lightbox">
+									<ul class="clearfix gallery-photos" style="margin-top:20px;">
+										<li ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" id="gallery-photos-{{x.id}}" class="col-md-3 col-sm-3 col-xs-6">
+											<a href="javascript:void(0);" ng-click="setImage(x.id)" class="photo-box image-link" style="background-image: url('{{baseUrl}}/{{x.path}}/thumbnail/{{x.name}}');"></a>
+											<span class="thumb-meta-time dis_criptn">{{x.title}}</span>
+										</li>
+									
+									</ul>
+									<div style="  margin-left: 8px;">
+									<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" ng-model="gallaryImgId"/>
+							<button type="submit" style="margin-left:8px;" class="btn btn-primary"> Add</button>
+							<button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+							
+						</form>
+					<!-- Popup image gallery end here -->
+					
+					</tab> <!-- first Tab image gallery end here -->
+					
+					<!-- add from library end here -->
+					<tab heading="Add From System">
+						<form id="productimg"	ng-submit="submitSystemImage()">
+						<div class="main-box-body">
+							<header class="main-box-header">
+								<form style="margin-bottom: 3%;margin-top:3%;overflow:hidden;"><div class="col-md-1 col-sm-3"> <label>Title<span class="red">*</span></label></div><div class="col-md-6 col-sm-7" > <input type="text" maxlength="20" class="form-control" ng-model="sysUpload.title"  name="" id="" required></div></form>
+							</header>
+							
+							<div class="main-box-body">
+								<div id="dropzone" style="margin-top:15px;">
+									<div id="demo-upload" class="dropzone dz-clickable custm_dropzone" >
+										<div class="dz-default dz-message">
+											<span>Drop files here to upload</span>
+											<img id="blah" src=""></img>
+										</div>
+										<input type="file" id="ig" file-model="sysUpload.imageFile" required />
+										 <span>{{uploadImageName}}</span> 
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary"> Add</button>
+							<button type="button" ng-click="clearData()" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+						</div>
+						</form>
+					</tab>
+				</tabset>
+			</div> <!-- Add radio button tab start here -->
+      </div>
+     <!--  <div class="modal-footer">
+		   
+       
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+<!-- For Add Image Popup End -->
+
+<!--  For Add Document popup start here -->
+
+<div class="modal fade" id="add_new_docmnt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Add Product Document</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Add radio button tab start here -->
+			<div>
+			<!-- Nav tabs -->
+			    <tabset justified="false"> <tab heading="Add from Library">
+					<!--  Popup image gallery start here -->
+					<form ng-submit="submitLibraryDoc()">	
+					
+							<div class="main-box-body">
+								<div id="gallery-photos-lightbox">
+									<ul class="clearfix gallery-photos" style="margin-top:20px;">
+										<li ng-repeat="g in gallaryDocs.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-click="setDoc(g.id)" class="col-md-3 col-sm-3 col-xs-6">
+											<a href="javascript:void(0);" class="photo-box image-link" style="background-image: url('{{g.type|docsIcons}}');"></a>
+											<span class="thumb-meta-time"> {{g.title}}</span>
+										</li>
+									</ul>
+									<div style="  margin-left: 8px;">
+									<pagination total-items="totalItems1" max-size="maxSize" ng-model="currentPage" ng-change="pageChanged1()"></pagination>
+									</div>
+								</div>
+							</div>
+							<button type="submit" style="margin-left:8px;" class="btn btn-primary"> Add</button>
+							<button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+						
+					</form>
+						
+									
+					<!-- Popup image gallery end here -->
+					
+				</tab> <!-- first Tab image gallery end here -->
+					
+			    <!-- add from library end here -->
+				<tab heading="Add From System">
+					<form id="productdoc" ng-submit="submitSystemDoc()">
+						<div class="main-box-body">
+							<header class="main-box-header">
+								<form style="margin-bottom: 3%;margin-top:3%;overflow:hidden;"><div class="col-md-1 col-sm-3"> <label>Title</label></div><div class="col-md-6 col-sm-7" > <input type="text" class="form-control" ng-model="sysUpload.docTitle"  name="" id="" required></div></form>
+							</header>
+							<div class="main-box-body">
+								<div id="dropzone" style="margin-top:15px;">
+									<div id="demo-upload" class="dropzone dz-clickable custm_dropzone" >
+										<div class="dz-default dz-message">
+											<span>Drop files here to upload</span>
+											<img id="blah" src=""></img>
+										</div>
+										<input type="file" id="doc" file-model="sysUpload.docFile" required />
+										<span>{{uploadDocName}}</span>
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary"> Add</button>
+							<button type="button" class="btn btn-default cancel" ng-click="productdocFunct()" data-dismiss="modal">Close</button>
+						</div>
+					</form>
+					<script>
+				
+				
+				</script>
+				</tab></tabset>
+				
+			</div> <!-- Add radio button tab start here -->
+		</div>
+    </div>
+  </div>
+</div>
+<!-- For Add Document Popup End -->
+
+	<script>
+	$(function() {
+		$('ul#gallery-photos').sortable({ opacity: 0.6, cursor: 'move', update: function() {
+			var order = $(this).sortable('serialize'); 
+			$.post('/gallery-sortimages.html', order, function(theResponse){
+		
+			}); 															 
+		}								  
+		});
+		
+		$(document).ready(function() {
+			$('#gallery-photos-lightbox').magnificPopup({
+				type: 'image',
+				delegate: 'a',
+				gallery: {
+					enabled: true
+			    }
+			});
+		});
+	});
+	</script>
+	
+
+
+
+
+
+
+

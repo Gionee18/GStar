@@ -1,0 +1,320 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>Users</span></li>
+		</ol> -->
+		
+		<div class="clearfix">
+			<h1 class="pull-left">Manage Users</h1>
+			
+			
+			<div class="row"></div>
+			<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+			<div class="shorting-block">
+			<select ng-model="itemsPerPage" class="form-control">
+				<option value="10">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+			</div>
+			
+			<div class="right_buttons">
+			
+		
+		
+		<div class="" style="padding-right:0px; float:left; ">
+	
+		<a data-match-route="/admin/add-user" href="#/admin/add-user" ng-if="userData.role < 25" class="btn btn-primary form-control"><i class="fa fa-plus-circle fa-lg"></i>&nbsp;Add New</a>
+		</div>
+		
+		<div class="" style="padding-right:0px; float:left; margin:0 5px;">
+		<a class="btn btn-primary form-control" data-toggle="modal" ng-if="userData.role<=10"  data-target="#ImportUsers"><i class="fa fa-download"></i>
+&nbsp;Import User</a>
+		</div>
+			
+		<div class="" style="border:1px solid #ccc; position: relative;padding:0px; float:right;">
+						<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="getUsers()" >
+		<span style="position: absolute; top: 6px;right: 10px;"><a href="javascript:void(0);"><i class="fa fa-search"></i></a></span>
+		</div>
+			<select  ng-model="statuslist"  ng-change="getUsers()" class="form-control"style="width:120px;border: 1px solid #ccc; display: block; float:right;margin:0 3px;">
+					<option value="">All</option>
+					<option ng-repeat="(key,value) in userRoleFilter" ng-if="key >userData.role" value="{{key}}">{{value}}</option>
+				
+				</select>
+				<!-- <select  ng-model="archive" ng-change="getUsers()" class="form-control"style="width:120px;border: 1px solid #ccc; display: block; float:right;margin:0 3px;">
+					
+					<option ng-repeat="(key,value) in archivelist" value="{{value}}">{{value}}</option>
+				
+				</select> -->
+				<a class="btn btn-primary form-control"  style="width:120px;border: 1px solid #ccc; display: block; float:right;margin:0 3px;" ng-click="exportData()"   ><i class="fa fa-upload" aria-hidden="true"></i>
+&nbsp;Export</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box no-header clearfix">
+			<div class="main-box-body clearfix">
+				<div class="table-responsive">
+					<table class="table user-list table-hover">
+						<thead>
+							<tr>
+								 <th ng-if="userData.role <= 10">
+									<div class="checkbox-nice" >
+										<input type="checkbox"   id="selectUser" ng-if="userData.role<=10"  ng-click="selectAll()"/>
+										<label for="selectUser"></label>
+										<!-- <label for="terms-cond1" style="margin-bottom: 0px;font-weight: 700;font-size: 12px;">Select all</label> -->
+									</div>
+								</th> 
+								
+								<th ng-click="sort('first_name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('email')" >Email Id<span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('id')" width="50">ID<span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('contact')">Mobile<span class="glyphicon sort-icon" ng-show="sortKey=='contact'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('role')" >Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('status')">Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<tr  ng-repeat="u in dataUsers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) |orderBy:sortKey:reverse" ><!-- ng-if="u.role > userData.role" -->
+							
+							 <td ng-if="userData.role<= 10"><div class="checkbox-nice">
+										<input type="checkbox" id="selectUser{{u.id}}" class="checkuser" ng-click="selectUser(u.id)">
+										<label for="selectUser{{u.id}}"></label>
+									</div>
+								</td> 
+								<td>
+									<div class="tbl_img">
+									<img ng-if="u.profile_picture" src="services/uploads/profileImages/thumbnail/{{u.profile_picture}}"/>
+									<img ng-if="!u.profile_picture" src="assets\img\profile.jpg"/>
+									</div>
+									<a href="#/admin/edit-user/{{u.id}}" class="user-link">{{u.first_name}} {{u.last_name}}</a>
+								</td>
+								
+								<td>{{u.email}}</td>
+								<td>{{u.id}}</td>
+								<td>{{u.contact}}</td>
+								<td>{{u.role|userRole}}</td>
+								
+								<td>
+									<span class="label label-{{u.status|statusClass}}">{{u.status|statusFilter}}</span>
+								</td>
+								<td>
+									<a data-toggle="modal" ng-if="userData.role < 35"  data-target="#resetPassword" ng-click="funSetUserForResetPassword(u.id)" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-key fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<a data-match-route="/admin/edit-user" href="#/admin/edit-user/{{u.id}}" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+					
+									 <a href="javascript:void(0);" ng-click="deleteUser(u.id)" ng-if="userData.role<=10" class="table-link danger"> 
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+		<div style="display:none;" id="exportable">		
+			<table class="table user-list table-hover">
+						<thead>
+							<tr>
+								 <th ng-if="userData.role <= 10">
+									<div class="checkbox-nice" >
+										<input type="checkbox"   id="selectUser" ng-if="userData.role<=10"  ng-click="selectAll()"/>
+										<label for="selectUser"></label>
+										<!-- <label for="terms-cond1" style="margin-bottom: 0px;font-weight: 700;font-size: 12px;">Select all</label> -->
+									</div>
+								</th> 
+								
+								<th ng-click="sort('first_name')">Name<span class="glyphicon sort-icon" ng-show="sortKey=='first_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('email')" >Email Id<span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('id')" width="50">ID<span class="glyphicon sort-icon" ng-show="sortKey=='id'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('contact')">Mobile<span class="glyphicon sort-icon" ng-show="sortKey=='contact'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('role')" >Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-click="sort('status')">Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th>City</th>
+								<th>DOB</th>
+								<th>Gender</th>
+								<th>Nd Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<tr  ng-repeat="u in dataUsers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) |orderBy:sortKey:reverse" ><!-- ng-if="u.role > userData.role" -->
+							
+							 <td ng-if="userData.role<= 10"><div class="checkbox-nice">
+										<input type="checkbox" id="selectUser{{u.id}}" class="checkuser" ng-click="selectUser(u.id)">
+										<label for="selectUser{{u.id}}"></label>
+									</div>
+								</td> 
+								<td>
+									<div class="tbl_img">
+									<img ng-if="u.profile_picture" src="services/uploads/profileImages/thumbnail/{{u.profile_picture}}"/>
+									<img ng-if="!u.profile_picture" src="assets\img\profile.jpg"/>
+									</div>
+									<a href="#/admin/edit-user/{{u.id}}" class="user-link">{{u.first_name}} {{u.last_name}}</a>
+								</td>
+								
+								<td>{{u.email}}</td>
+								<td>{{u.id}}</td>
+								<td>{{u.contact}}</td>
+								<td>{{u.role|userRole}}</td>
+								
+								<td>
+									<span class="label label-{{u.status|statusClass}}">{{u.status|statusFilter}}</span>
+								</td>
+								<td>{{u.city}}</td>
+								<td>{{u.dob}}</td>
+								<td>{{u.gender}}</td>
+								<td>{{u.nd_name}}</td>
+							</tr>
+							
+						</tbody>
+					</table>
+		</div>		
+				</div>
+			</div>
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		
+			 <div class="main-box-body clearfix">
+			 <modal lol="modal1" modal-body="body" modal-footer="footer" modal-header="header" ></modal>
+      <a href="javascript:void(0);" data-target="#{{modal1}}" ng-click="deleteAllUser()" ng-if="userData.role < 15" class="btn btn-primary"  data-toggle="modal">
+				Delete Selected</a>
+		</div> 
+		
+	</div>
+</div>
+
+
+
+
+
+<!--- Import User pop-up -->
+<div class="modal fade" id="ImportUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Import Users</h4>
+      </div>
+      <div class="modal-body">
+        <!--  tab start here -->
+			<div>
+			<!-- Nav tabs -->
+			    
+					
+			    <!-- add from library end here -->
+				
+					<form ng-submit="importUsers()">
+					<div class="main-box" style="margin-top:12px;">
+						<header class="main-box-header" style="overflow:hidden;">
+						
+						</header>
+						
+						<div class="main-box-body">
+							<div id="dropzone" class="custm_dropdown">
+								<div id="demo-upload" class="dropzone dz-clickable" action="#">
+									<div class="dz-default dz-message">
+										<span>Drop files here to upload</span><img id="blah" src=""></img>
+									</div>
+									<input type="file" file-model="sysUpload.user_file" id="user_file" required/>
+									<span>{{uploadDocName}}</span>
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-primary"> Submit</button>
+						<button type="button" id="import" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+					</div>
+					</form>
+				
+			</div> <!--  tab end here -->
+      </div>
+      <div class="modal-footer">
+       
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--- Import User pop-up -->
+<div class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Reset Password</h4>
+      </div>
+      <div class="modal-body">
+        <!--  tab start here -->
+		<div class="row">
+		<div class="col-sm-12">
+		<form ng-submit="resetPassword()">
+			  <div class="form-group">
+				<label for="recipient-name" class="control-label">New Password<span class="required">*</span></label>
+				   <div class="cmmn_input">
+					<input type="password" ng-model="resetPass.newpassword" maxlength="40" class="form-control"required="">
+				   </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="message-text" class="control-label">Confirm Password<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<input type="password" ng-model="resetPass.confirmpassword" maxlength="40" class="form-control" required="">
+				</div>
+			  </div>
+			  
+			<div class="form-group">
+				<input type="checkbox" ng-true-value="1" ng-true-value="0" ng-model="resetPass.is_mail" maxlength="40">
+				<label for="message-text" class="control-label">Send Notification</label>
+			</div>
+			 
+
+			<div class="col-md-12" style="padding:0;">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+			</div> 
+		</form>			  
+			</div>
+		</div>
+		
+		
+			
+			
+			
+		
+		<!--  tab end here -->
+      </div>
+      <div class="modal-footer">
+       
+        
+      </div>
+    </div>
+  </div>
+</div>
+			

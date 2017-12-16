@@ -1,0 +1,10 @@
+<a class="dropdown-toggle" data-toggle="dropdown">
+	<img src="services_new/uploads/profileImages/thumbnail/{{userData.profile_picture}}" alt=""/>
+	<span class="hidden-xs">{{userData.first_name + " " + userData.last_name}}</span> <b class="caret"></b>
+</a>
+<ul class="dropdown-menu dropdown-menu-right">
+	<li><a href="#/admin/view-profile"><i class="fa fa-user"></i>Profile</a></li>
+	<li><a href="#/admin/change-password"><i class="fa fa-key"></i>Change Password</a></li>
+	<li ng-if="userData.role <=10"><a href="#/admin/settings"><i class="fa fa-cog"></i>Settings</a></li>
+	<li><a href="javascript:void(0);" ng-click="logoutBtn()"><i class="fa fa-power-off"></i>Logout</a></li>
+</ul>

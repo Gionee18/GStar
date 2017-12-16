@@ -1,0 +1,226 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+.approv_prod {
+    width: 100%;
+    float: none;
+}
+.approv_prod1 {
+    width: 100%;
+    float: none;
+}
+.compare_btn{
+	float: right;
+}
+.prd_name{
+	font-weight: bold;
+}
+.main-box h2 {
+    background-color: #e84e40;
+    border: 1px solid #e84e40;
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    margin: 5px 0 20px !important;
+    padding: 7px !important;
+    text-align: center;
+}
+.main-box .main-box-body {padding: 0 0 20px;}
+.mb20{margin-bottom: 20px;}
+.theme-red .btn-danger { background-color: #03a9f4; border-color: #ca1f10;}
+.theme-red .btn-danger:hover { background-color: #03a9f4; border-color: #ca1f10; opacity: 0.8;}
+.tablewrap{padding: 0px 20px;}
+.main-box{min-height: 650px;}
+</style>
+<div class="row">
+	<div class="col-lg-12">
+	<!-- 	<ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>Product Compare </span></li>
+		</ol> -->
+		
+		<div class="clearfix">
+			<h1 class="pull-left advn_tbl"><back></back>&nbsp;Product Comparison </h1>
+		</div>
+	</div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+  	<div class="compare_btn mb20">
+  		<button class="btn btn-success" ng-click="approvedProdFunc('1')" ng-show="updatedProduct.approve_status == '0'">Approve</button>
+      <a href="#/approval/products" class="btn btn-danger" style="background-color: #e84e40;" ng-click="approvedProdFunc('2')"  ng-show="updatedProduct.approve_status == '0'">Reject</a>
+  	</div>
+  </div>  
+</div>
+<div class="row">
+	<div class="col-lg-6">
+		<div class="main-box">
+			<div class="main-box-body">
+			<div class="approv_prod">
+	<h2>Previous Details</h2>
+  <div class="tablewrap">
+    <table >
+
+      <tr>
+        <td class="prd_name">Product Name</td>
+        <td>{{currentProduct.product_name}}</td>
+      </tr>
+      <tr>
+        <td class="prd_name">Product Category</td>
+        <td>{{currentProduct.category_name}}</td>
+     </tr>
+     <tr>
+        <td class="prd_name">Is Product New</td>
+        <td><span ng-if="currentProduct.new_product_flag == '1'" class="new_span_img"><img src="assets\img\new.gif" /></span></td>
+     </tr>
+     <tr>
+      <td class="prd_name">Position</td>
+      <td>{{currentProduct.position}}</td>
+     </tr>
+     <tr>
+      <td class="prd_name">Status</td>
+     <td>  <span ng-class="currentProduct.status=='1' ? 'label label-success' : 'label label-danger'">{{currentProduct.status | statusFilter}}</span>
+      </td>
+     </tr>
+      <tr>
+        <td class="prd_name">Product Description</td>
+      	<td>{{currentProduct.product_desc}}</td>
+      </tr>
+
+     <tr>
+      <td class="prd_name">Description 1</td>
+      <span>
+      <td ng-bind-html="currentProduct.desc1"></td>  
+      </span>
+      
+     </tr>
+     <tr class="prd_name">
+      <td>Description 2</td>
+      <td ng-bind-html="currentProduct.desc2"></td>
+     </tr>
+     <tr>
+      <td class="prd_name">Description 3</td>
+      <td ng-bind-html="currentProduct.desc3"></td>
+     </tr>
+
+
+      <tr>
+        <td class="prd_name">Product Images</td>
+      <td>
+        <span ng-repeat="asset in currentProduct.assets">
+         <img ng-if="asset.type == 'image'" src="services/{{asset.path}}/{{asset.name}}" height="50px" width="50px">
+        </span>
+      </td>
+     </tr>
+     <tr>
+        <td class="prd_name">Product Document</td>
+      <td>
+      <span ng-repeat="asset in currentProduct.assets">
+         <img ng-if="asset.type != 'image'" src="services/{{asset.path}}/{{asset.name}}" height="50px" width="50px">
+        </span>
+     </tr>
+
+    </table>
+  </div>  
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+	<div class="main-box">
+		<div class="main-box-body">
+<div class="approv_prod1">
+<h2>Suggested Changes</h2>
+  <div class="tablewrap">
+    <table>
+
+      <tr  ng-class="currentProduct.product_name==updatedProduct.product_name ? '' : 'warningborder'">
+        <td class="prd_name" >Product Name</td>
+        <td>{{updatedProduct.product_name}}</td>
+      </tr>
+      <tr ng-class="currentProduct.category_name==updatedProduct.category_name ? '' : 'warningborder'">
+        <td class="prd_name" >Product Category</td>
+        <td>{{updatedProduct.category_name}}</td>
+     </tr>
+     <tr ng-class="currentProduct.new_product_flag==updatedProduct.new_product_flag ? '' : 'warningborder'">
+        <td class="prd_name" class="prd_name" >Is Product New</td>
+        <td><span ng-if="updatedProduct.new_product_flag == '1'" class="new_span_img"><img src="assets\img\new.gif" /></span></td>
+     </tr>
+     <tr ng-class="currentProduct.position==updatedProduct.position ? '' : 'warningborder'">
+      <td class="prd_name" >Position</td>
+      <td>{{updatedProduct.position}}</td>
+     </tr>
+     <tr ng-class="currentProduct.status==updatedProduct.status ? '' : 'warningborder'">
+      <td class="prd_name"  >Status</td>
+     <td>  <span ng-class="currentProduct.status=='1' ? 'label label-success' : 'label label-danger'">{{updatedProduct.status | statusFilter}}</span>
+      </td>
+     </tr>
+      <tr ng-class="currentProduct.product_desc==updatedProduct.product_desc ? '' : 'warningborder'">
+        <td class="prd_name" >Product Description</td>
+      	<td>{{updatedProduct.product_desc}}</td>
+      </tr>
+      <tr ng-class="currentProduct.desc1==updatedProduct.desc1 ? '' : 'warningborder'">
+      <td class="prd_name" >Description 1</td>
+      <td ng-bind-html="updatedProduct.desc1"></td>
+     </tr>
+     <tr ng-class="currentProduct.desc2==updatedProduct.desc2 ? '' : 'warningborder'">
+      <td class="prd_name" >Description 2</td>
+      <td ng-bind-html="updatedProduct.desc2"></td>
+     </tr>
+     <tr ng-class="currentProduct.desc3==updatedProduct.desc3 ? '' : 'warningborder'">
+      <td class="prd_name" >Description 3</td>
+      <td ng-bind-html="updatedProduct.desc3"></td>
+     </tr>
+
+      <tr ng-class="currentProduct.assets.length==updatedProduct.assets.length ? '' : 'warningborder'">
+        <td class="prd_name" >Product Images</td>
+     <td>
+        <span ng-repeat="asset in updatedProduct.assets">
+         <img ng-if="asset.type == 'image'" src="services/{{asset.path}}/{{asset.name}}" height="50px" width="50px">
+        </span>
+        </td>
+     </tr>
+     <tr ng-class="currentProduct.assets.length==updatedProduct.assets.length ? '' : 'warningborder'">
+        <td class="prd_name" >Product Document</td>
+      <td>
+       <span ng-repeat="asset in updatedProduct.assets">
+         <img ng-if="asset.type != 'image'" src="services/{{asset.path}}/{{asset.name}}" height="50px" width="50px">
+        </span>
+      </td>
+     </tr>
+    </table>
+  </div>  
+				</div>
+				<div style="clear:both;"></div>
+			
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="compare_btn mb20">
+
+<button class="btn btn-success" ng-click="approvedProdFunc('1')" ng-show="updatedProduct.approve_status == '0'">Approve</button>
+      <a href="#/approval/products" class="btn btn-danger" style="background-color: #e84e40;" ng-click="approvedProdFunc('2')"  ng-show="updatedProduct.approve_status == '0'">Reject</a>
+
+</div>
+
+

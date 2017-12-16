@@ -1,0 +1,156 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl">Profile Approval Requests</h1>
+		<div class="row"></div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+		
+			<div class="shorting-block">
+				<select ng-model="itemsPerPage" class="form-control">
+					<option value="10">10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
+			<div class="right_buttons mnge_pduct">	
+							
+				<span style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;">
+				
+				<input type="text" class="form-control" placeholder="Search" ng-model="search" ng-change="userProfileList()" >
+					<span style="position: absolute;top: 6px;right: 7px;z-index: 10; background: #fff; cursor: pointer; padding: 0 3px;">
+						<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+					</span>
+				</span>
+				<div class="dis1" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		<input placeholder="From Date" id="profileFrom" ng-model="startDate" ng-change="userProfileList()" type="text" class="form-control " readonly>
+		<span  style="position: absolute; top: 6px;right: 10px;"><i class="fa fa-calendar"></i> 	</span>
+		</div>
+		<div class="dis1" style="border:1px solid #ccc; position: relative;padding:0px; float:left;">
+		
+		<input type="text" style="50%"  id="profileTo" placeholder="To Date" ng-model="endDate"  ng-change="userProfileList()"  class="form-control " readonly>	
+		<span style="position: absolute; top: 6px;right: 10px;"><i class="fa fa-calendar"></i>	</span>	
+		</div>	
+				<select  ng-model="statuslist" ng-change="userProfileList()" class="form-control"style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: left; margin-left: 5px;">
+					<option value="">All</option>
+					<option ng-repeat="(key,value) in status" value="{{key}}">{{value}}</option>
+				
+				</select>
+			<a class="btn btn-primary form-control"  style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;" ng-click="exportData()"   ><i class="fa fa-upload" aria-hidden="true"></i>
+&nbsp;Export</a>
+			
+				
+				
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							 <!-- <th></th> -->
+							  <th ng-click="sort('user_name')" >User Name<span class="glyphicon sort-icon" ng-show="sortKey=='user_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <th ng-click="sort('email')" >Email Id<span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+
+							   <th ng-click="sort('role')" >Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+
+							   <th ng-click="sort('approved_date')" >Processed On<span class="glyphicon sort-icon" ng-show="sortKey=='approved_date'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+
+							   <th ng-click="sort('approved_by')" >Processed By<span class="glyphicon sort-icon" ng-show="sortKey=='approved_by'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   
+							   
+							   <th ng-click="sort('approved_status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='approved_status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							
+							<th class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  |orderBy:sortKey:reverse" ng-if="userData.role < x.role">
+								<td>
+								<span title="{{x.user_name}}" >{{x.user_name}}</span>
+								</td>
+								
+								<td title="{{x.email}}">{{x.email}}</td>
+								<td title="{{x.role}}">{{x.role | userRole}}</td>
+								<td title="{{x.approved_date}}">{{x.approved_date | date:"dd/MM/yyyy h:mma"}}</td>
+								<td title="{{x.approved_by}}">{{x.approved_by}}</td>
+
+								<!-- <td>
+									<span  ng-class="x.approved_status=='1' ? 'label label-success' : 'label label-warning'" >{{x.approved_status|approvalFilter}}</span>
+								</td> -->
+									<td ng-if="x.approved_status=='1'" ><span class="label label-{{x.approved_status|approvedstatusClass}}">{{x.approved_status | approvalFilter}}</span></td>
+								<td ng-if="x.approved_status=='0'" ><span class="label label-{{x.approved_status|approvedstatusClass}}">{{x.approved_status | approvalFilter}}</span></td>
+								<td ng-if="x.approved_status=='2'" ><span class="label label-{{x.approved_status|approvedstatusClass}}">{{x.approved_status | approvalFilter}}</span></td>
+								
+								<td class="text-center">
+									<a  href="#/approval/user-compare/{{x.id}}/{{x.user_id}}"><i class="fa fa-eye" title="view" aria-hidden="true"></i></a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+		<div style="display:none;" id="exportable">	
+			<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							 <!-- <th></th> -->
+							  <th ng-click="sort('user_name')" >User Name<span class="glyphicon sort-icon" ng-show="sortKey=='user_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							  <th ng-click="sort('email')" >Email Id<span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+
+							   <th ng-click="sort('role')" >Role<span class="glyphicon sort-icon" ng-show="sortKey=='role'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+
+							   <th ng-click="sort('approved_date')" >Processed On<span class="glyphicon sort-icon" ng-show="sortKey=='approved_date'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+
+							   <th ng-click="sort('approved_by')" >Processed By<span class="glyphicon sort-icon" ng-show="sortKey=='approved_by'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							   
+							   
+							   <th ng-click="sort('approved_status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='approved_status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							
+							
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))  |orderBy:sortKey:reverse" ng-if="userData.role < x.role">
+								<td>
+								<span title="{{x.user_name}}" >{{x.user_name}}</span>
+								</td>
+								
+								<td title="{{x.email}}">{{x.email}}</td>
+								<td title="{{x.role}}">{{x.role | userRole}}</td>
+								<td title="{{x.approved_date}}">{{x.approved_date}}</td>
+								<td title="{{x.approved_by}}">{{x.approved_by}}</td>
+
+								<!-- <td>
+									<span  ng-class="x.approved_status=='1' ? 'label label-success' : 'label label-warning'" >{{x.approved_status|approvalFilter}}</span>
+								</td> -->
+									<td ng-if="x.approved_status=='1'" ><span class="label label-{{x.approved_status|approvedstatusClass}}">{{x.approved_status | approvalFilter}}</span></td>
+								<td ng-if="x.approved_status=='0'" ><span class="label label-{{x.approved_status|approvedstatusClass}}">{{x.approved_status | approvalFilter}}</span></td>
+								<td ng-if="x.approved_status=='2'" ><span class="label label-{{x.approved_status|approvedstatusClass}}">{{x.approved_status | approvalFilter}}</span></td>
+								
+								
+							</tr>
+						</tbody>
+					</table>
+		</div>		
+				</div>
+			</div>
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+

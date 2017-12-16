@@ -1,0 +1,124 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl">Manage Competitors Models</h1>
+		<div class="row"></div>
+		
+		<div class="row">
+			<div class="col-md-7">
+				<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+		
+				<div class="shorting-block">
+					<select ng-model="itemsPerPage" class="form-control">
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-model="category_id" ng-change="filterList(category_id)">
+					<option value="">All</option>
+					<option ng-repeat="single in manufactureList" value="{{single.id}}">{{single.name}}</option>
+				</select>
+			</div>
+			<div class="col-md-3">
+				<span style="width:150px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;"><!-- <input ng-model="search" placeholder="Search" ng-change="getSearchData()" type="text" class="form-control"> -->
+				<my-tag src="'list/model'" callback="getUpdatedData(data)"></my-tag>
+					<span style="position: absolute;top: 6px;right: 7px;z-index: 10; background: #fff; cursor: pointer; padding: 0 3px;">
+						<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+					</span>
+				</span>
+				
+				 <a data-match-route="/products/add-product" href="#/recommender/add-model" ng-if="userData.role < 15" class="btn btn-primary pull-right"><i class="fa fa-plus-circle fa-lg"></i>&nbsp;Add New</a>
+			</div>
+		</div>
+		
+		
+			
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							 <th  style="width:150px;" ng-click="sort('model_name')" >Model<span class="glyphicon sort-icon" ng-show="sortKey=='model_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							<th ng-click="sort('mf_name')" >manufacturer's<span class="glyphicon sort-icon" ng-show="sortKey=='mf_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+						  
+						
+							<th ng-click="sort('description')" style="width:300px;">Description<span class="glyphicon sort-icon" ng-show="sortKey=='description'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>   
+									
+								
+								
+								<th ng-if="userData.role < 15"  class="text-center">Specifications</th>
+								<th ng-click="sort('status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+								<th ng-if="userData.role < 15"  class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in modelList.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | orderBy:sortKey:reverse">
+						
+								
+								<td>
+								<div class="tbl_img">
+									<img ng-if="x.asset_image != null && x.asset_image[0].name != ''" title="{{x.model_name}}" src="{{baseUrl}}{{x.asset_image[0].path}}/{{x.asset_image[0].name}}"/>
+									<img ng-if="!x.asset" title="{{x.name}}" src="assets\img\no_image.jpg"/>
+								</div>
+								{{x.model_name}}
+								</td>
+								<td>{{x.mf_name}}</td>
+								
+								<td>{{x.description}}</td>
+								
+								
+								
+								<td class="text-center" ng-if="x.spec_status == 1 && userData.role < 15" ><a href="#/specification/view-specification/{{x.id}}/others"><span class="required">View Specification</span></a></td>
+								<td class="text-center" ng-if="x.spec_status == 0 && userData.role < 15"> No Specification</td>
+								<td ><span class="label label-{{x.status|statusClass}}">{{x.status|statusFilter}}</span></td>
+								
+								<td ng-if="userData.role < 15"  class="text-center">
+								<a data-match-route="/recommender/edit-model" ng-if="userData.role < 15" href="#recommender/edit-model/{{x.id}}" class="table-link" >
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+										<modal lol="modal1" modal-body="body" modal-footer="footer" modal-header="header" ></modal>
+      <a href="javascript:void(0);" data-target="#{{modal1}}" class="table-link danger" ng-if="userData.role < 15" ng-click="deleteModel(x.id)"  data-toggle="modal">
+								<!-- 	<a href="javascript:void(0);" class="table-link danger" ng-click="deleteModel(x.id)"> -->
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+
+						

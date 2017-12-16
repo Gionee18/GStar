@@ -1,0 +1,71 @@
+<div class="row">
+	<div class="col-lg-12">
+		<ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol>
+		
+		<h1>Advanced tables</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive">
+					<table id="table-example" class="table table-hover" datatable="ng" dt-options="dtOptions">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Position</th>
+								<th>Office</th>
+								<th>Age</th>
+								<th>Start date</th>
+								<th>Salary</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in list">
+								<td>{{x.dept_name}}</td>
+								<td>{{x.created_at}}</td>
+								<td>{{x.desig_name}}</td>
+								<td>{{x.email}}</td>
+								<td>{{x.mobile}}</td>
+								<td>{{x.updated_at}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- this page specific inline scripts -->
+<!-- <script>
+$(document).ready(function() {
+	var table = $('#table-example').dataTable({
+		'info': false,
+		'sDom': 'lTfr<"clearfix">tip',
+		'oTableTools': {
+			'aButtons': [
+				{
+					'sExtends':    'collection',
+					'sButtonText': '<i class="fa fa-cloud-download"></i>&nbsp;&nbsp;&nbsp;<i class="fa fa-caret-down"></i>',
+					'aButtons':    [ 'csv', 'xls', 'pdf', 'copy', 'print' ]
+				}
+			]
+		}
+	});
+	
+	var tt = new $.fn.dataTable.TableTools( table );
+	$( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
+});
+</script> -->

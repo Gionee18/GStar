@@ -1,0 +1,195 @@
+<authentication></authentication>
+
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="javascript:void(0);">Home</a></li>
+			<li class="active"><span>Advanced tables</span></li>
+		</ol> -->
+		
+		<h1 class="advn_tbl">Manage Updates Categories</h1>
+		<div class="row"></div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+		
+			<div class="shorting-block">
+				<select ng-model="itemsPerPage" class="form-control">
+					<option value="10">10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</div>
+			<div class="right_buttons mnge_pduct">				
+				<span style="width:120px; position: relative;border: 1px solid #ccc; display: block;float: right; margin-left: 5px;"><!-- <input ng-model="search" placeholder="Search" ng-change="getSearchData()" type="text" class="form-control"> -->
+				<my-tag src="'list/category/news'" callback="getUpdatedData(data)"></my-tag>
+					<span style="position: absolute;top: 6px;right: 7px;z-index: 10; background: #fff; cursor: pointer; padding: 0 3px;">
+						<a href="javascript:void(0);"><i class="fa fa-search"></i></a>
+					</span>
+				</span>
+				
+				 <a data-match-route="/updates/add-category" href="#/updates/add-category" ng-if="userData.role < 15" class="btn btn-primary pull-right"><i class="fa fa-plus-circle fa-lg"></i>&nbsp;Add New</a>
+				<!--span data-toggle="modal" data-target="#dnd_popup" class="btn btn-primary pull-right" style="margin-right:5px; margin-left:5px;"><i class="fa fa-exchange fa-rotate-90"></i></span>
+				<select ng-model="selectCategory" ng-change="ddlCategory()" class="form-control" style=" float: right;">
+					<option value="">All</option>
+					<option ng-repeat="c in categoryListArray" value="{{c.category_id}}">{{c.category_name}}</option>
+				</select> -->
+				
+				<span data-toggle="modal" data-target="#dnd_popup"  ng-if="userData.role <= 10" class="btn btn-primary pull-right" style="margin-right:5px; margin-left:5px;"><i class="fa fa-exchange fa-rotate-90"></i></span>
+	</div>
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box Cbox clearfix">
+			<!-- <header class="main-box-header clearfix">
+				<h2>Table with JS pagination, search, ordering, export to pdf and lots more.</h2>
+			</header> -->
+			&nbsp;
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+				<div class="table-responsive" style="padding: 0 15px;">
+					<table id="table-example" class="table table-hover user-list">
+						<thead>
+							<tr>
+							<th ng-click="sort('category_name')" >Category<span class="glyphicon sort-icon" ng-show="sortKey=='category_name'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+						   <th ng-click="sort('description')" style="width: 300px;">Description<span class="glyphicon sort-icon" ng-show="sortKey=='description'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>
+							<th ng-click="sort('created_at')" >Created On<span class="glyphicon sort-icon" ng-show="sortKey=='created_at'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> 
+							<th ng-click="sort('updated_at')" >Updated On<span class="glyphicon sort-icon" ng-show="sortKey=='updated_at'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th> 
+							<th ng-click="sort('status')" >Status<span class="glyphicon sort-icon" ng-show="sortKey=='status'" ng-class="{'glyphicon-chevron-up':!reverse,'glyphicon-chevron-down':reverse}"></th>   
+								
+								
+								
+								<th ng-if="userData.role < 15"  class="text-center">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in categoryList.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))| filter:searchBox | orderBy:sortKey:reverse">
+						
+								
+								<td>{{x.category_name}}</td>
+								<td>{{x.description}}</td>
+								<td>{{x.created_at |date:"dd-MM-yyyy"}}</td>
+								<td>{{x.updated_at |date:"dd-MM-yyyy"}}</td>
+								<td ><span class="label label-{{x.status|statusClass}}">{{x.status|statusFilter}}</span></td>
+								
+								<td ng-if="userData.role < 15"  class="text-center">
+								<a data-toggle="modal" data-target="#add_new_cat" ng-if="userData.role < 15" ng-click="editCategory(x.id)" class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+						<a href="javascript:void(0);" class="table-link danger" ng-if="userData.role < 15" ng-click="deleteCategory(x.id)">		 
+     
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+		<pagination total-items="totalItems" max-size="maxSize" ng-model="currentPage" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+	</div>
+</div>
+
+
+
+<div class="modal fade" id="add_new_cat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Edit Updates Category</h4>
+      </div>
+      <div class="modal-body">
+      <div>
+			<!-- Nav tabs -->
+			    
+						<form ng-submit="submitEditCat()">
+						<div class="main-box-body editbx">
+							<header class="main-box-header">
+								<form style="margin-bottom: 3%;margin-top:3%;overflow:hidden;">
+								<div class="row">
+								<div class="col-sm-3"> 
+								<label>Title<span class="red">*</span></label></div>
+								<div class="col-sm-9" > 
+								<input type="text"  class="form-control" ng-model="editCatData.category_name"  maxlength="50" name="" id="" required>
+								</div>
+
+								</div>
+								
+								<div class="row">
+								
+							<div class="col-sm-3"><label>Status<span class="required">*</span></label></div>
+							<div class="col-sm-9" > 
+							<select class="form-control"  ng-model="editCatData.status" ng-disabled="userData.id == usr_id" required>
+								<option value=''>Select</option>
+								<option value='1'>Active</option>
+								<option value='0'>Inactive</option>
+							</select>
+							</div>
+								</div>
+								<div class="row">
+								<div class="col-sm-3"> <label>Description<span class="red">*</span></label></div>
+								<div class="col-sm-9" >
+								<textarea class="form-control" rows="3" ng-model="editCatData.description" maxlength="255"  name="" id="" required></textarea>
+								</div>
+								</div>
+								
+								
+
+								
+
+								</form>
+							</header>
+							
+						
+							<button type="submit" class="btn btn-primary"> Save</button>
+							<button type="button" id="cancel" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+						</div>
+						</form>
+				
+			</div> <!-- Add radio button tab start here -->
+      </div>
+ </div>
+  </div>
+</div>
+		
+
+<div class="modal fade" id="dnd_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Ordering Topics</h4>
+      </div>
+      <div class="modal-body">
+        <!--  tab start here -->
+			<div class="simpleDemo">
+			    <!-- add from library end here -->			
+				<form>
+				<ul dnd-list="orderList">
+					<li ng-repeat="item in orderList" dnd-draggable="item" dnd-moved="orderList.splice($index, 1)" dnd-effect-allowed="move"
+					dnd-selected="models.selected = item" ng-class="{'selected': models.selected === item}">
+						<div class="row"><div class="col-sm-1">{{$index + 1}}</div><div class="col-sm-11">{{item.category_name}}</div></div>
+					</li>
+				</ul>
+				</form>
+			</div> <!--  tab end here -->
+      </div>
+      <div class="modal-footer">
+		<button type="button" ng-click="setOrder()" class="btn btn-primary" data-dismiss="modal">Save</button>
+		<button type="button" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+	  </div>
+    </div>
+  </div>
+</div>		

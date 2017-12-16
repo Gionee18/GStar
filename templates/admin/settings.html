@@ -1,0 +1,107 @@
+<div class="row">
+	<div class="col-lg-12">
+		<!-- <ol class="breadcrumb">
+			<li><a href="#dasboard">Dashboard</a></li>
+			<li class="active"><span>Settings</span></li>
+		</ol> -->
+		
+		<div class="clearfix">
+			<h1 class="pull-left">Settings</h1>
+			
+			<!--div class="pull-right top-page-ui">
+				<a href="javascript:void(0);" class="btn btn-primary pull-right">
+					<i class="fa fa-plus-circle fa-lg"></i> Add Settings
+				</a>
+			</div-->
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box">
+			<div class="main-box-body">
+				<div id="gallery-photos-wrapper">
+				<div class="mbl_app_bnnr">Mobile App Banner
+				<button type="button" data-toggle="modal" data-target="#add_new_cat" class="btn btn-primary pull-right">Add Banner</button>
+				</div>
+					<ul id="gallery-photos" class="clearfix gallery-photos gallery-photos-hover ui-sortable" style="margin-top:15px;">
+						
+						<li ng-repeat="x in homeBanners" class="col-md-2 col-sm-3 col-xs-6 ng-scope" style="padding:15px;">
+							<div class="photo-box" style="background-image: url('{{baseUrl}}{{x.path}}/thumbnail/{{x.value}}');"></div>
+							<div style="text-align:center;"></div>
+							<div class="text-center" style="padding-top: 10px;">
+							<a href="{{baseUrl}}{{x.path}}/{{x.value}}" target="_blank">
+								<span class="fa-stack ">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-eye fa-stack-1x fa-inverse"></i>
+								</span>
+							</a>	
+					
+					 	<a href="javascript:void(0);" ng-click="deleteHomeBanner(x.id)" class=""> 
+								<span class="fa-stack ">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+								</span>
+							</a>
+							</div>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="add_new_cat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Add Banner</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Add radio button tab start here -->
+			<div>
+			<!-- Nav tabs -->
+			   
+					
+					<!-- add from library end here -->
+					
+						<form ng-submit="uploadHomeBanner()">
+						<div class="main-box-body">
+							<header class="main-box-header">
+							<!-- 	<form style="margin-bottom: 3%;margin-top:3%;overflow:hidden;"><div class="col-md-1 col-sm-3"> <label>Title</label></div><div class="col-md-6 col-sm-7" > <input type="text" class="form-control" ng-model="sysUpload.title"  name="" id="" required></div></form> -->
+							</header>
+							
+							<div class="main-box-body">
+								<div id="dropzone">
+									<div id="demo-upload" class="dropzone dz-clickable" >
+										<div class="dz-default dz-message">
+											<span>Drop files here to upload</span>
+											<img id="blah" src=""></img>
+										</div>
+									  <input type="file" id="doc" file-model="sysUpload.value" required />
+										<span>{{uploadImageName}}</span>
+									</div>
+								</div>
+							</div>
+							<div class="main-box-body" >
+							<button type="submit" class="btn btn-primary"> Add</button>
+							<button type="button" ng-click="closeModal()" class="btn btn-default cancel" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+						</form>
+				
+				
+			</div> <!-- Add radio button tab start here -->
+      </div>
+     <!--  <div class="modal-footer">
+		   
+       
+      </div> -->
+    </div>
+  </div>
+</div>

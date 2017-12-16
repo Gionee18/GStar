@@ -1,0 +1,118 @@
+<authentication></authentication>
+<style>
+.uploadimg img {
+    width: auto;
+    height: auto;
+    max-width: 100px;
+    max-height: 100px;
+}
+</style>
+<div class="row">
+<div class="col-lg-12">	<h1 class="advn_tbl"><back></back>&nbsp;Edit Competitors Model</h1>	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			
+			<div class="clearfix"></div>
+			<div class="main-box-body clearfix">
+			<!-- Form start here -->
+
+			<form style="padding-top:15px;" ng-submit="editModelData()">
+
+			<div class="col-sm-6">
+			  <div class="form-group">
+				<label for="recipient-name" class="control-label">Model Name<span class="required">*</span></label>
+			   <div class="cmmn_input">
+			   <input type="text" ng-model="editModel.model_name" maxlength="50" class="form-control" id="recipient-name" required>
+			   </div>
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="message-text" class="control-label">Manufacturer<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<!-- <select class="form-control" ng-model="editModel.mf_id"  required>
+						<option value="">Select</option>
+						<option ng-repeat="single in manufactureList" value="{{single.id}}">{{single.name}}</option>
+					</select> -->
+					<select ng-model="editModel.mf_id" ng-options="item.id as item.name for item in manufactureList" class="form-control" required>
+								<option value="">Select</option>
+							</select>
+				</div>
+			  </div>
+
+			
+			  
+			<div class="form-group">
+				<label for="message-text" class="control-label">Status<span class="required">*</span></label>
+				  <div class="cmmn_input">
+					<select class="form-control"  ng-model="editModel.status" ng-disabled="userData.id == usr_id" required>
+								<option value=''>Select</option>
+								<option value='1'>Active</option>
+								<option value='0'>Inactive</option>
+							</select>
+				</div>
+			  </div>
+
+			  <div class="form-group">
+				<label for="message-text" class="control-label">Upload Image</label>
+				  <div class="cmmn_input">
+					<div class="row">
+			   <div class="col-md-8">
+			   <input type="file" id="ig" file-model="editModel.file" class="form-control">
+			   </div>
+			    <div class="col-md-4">
+				<div class="uploadimg">
+			   <img id="blah" src="{{baseUrl}}{{editModel.asset_image[0].path}}/{{editModel.asset_image[0].name}}" alt="">
+			   </div>
+			   </div>
+			   </div>
+				</div>
+			  </div>
+
+
+			</div>   <!-- col-sm-6 end here  -->
+				
+
+				<div class="col-sm-6">
+				
+			   			   
+			<div class="form-group">
+				<label for="message-text" class="control-label">Model Description<span class="required">*</span></label>
+				  <div class="cmmn_input">
+				<textarea ng-model="editModel.description" maxlength="240" class="form-control" style="min-height:190px;"required></textarea>
+			  </div>
+			  </div>
+
+			  
+			</div>   <!-- col-sm-6 end here  -->
+			
+			<div class="col-md-12">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a type="button" class="btn btn-default" data-match-route="/products/manage-products" href="#/recommender/model-listing">Cancel</a>
+			</div>
+			</form>
+			
+			<!-- Form end here -->
+			
+</div>  <!-- Main box body end here -->
+		</div>
+	</div>
+</div>
+
+<section class="add_img_section">
+	<div class="row">
+		<div class="col-lg-12">
+		<div class="main-box">
+			
+			
+				<div class="col-lg-12">
+				<a type="button"  class="btn btn-primary" ng-if="editModel.spec_status == 0 && userData.role < 15" href="#/specification/add-specification/{{editModel.id}}/others">Add Specifications<a><br><br>
+				<a type="button"  class="btn btn-primary" ng-if="editModel.spec_status == 1 && userData.role < 15" href="#/specification/edit-specification/{{editModel.id}}/others">Edit Specifications<a>
+			</div>
+			
+			</div>
+		</div>									
+	</div>
+</section>

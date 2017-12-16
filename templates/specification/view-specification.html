@@ -1,0 +1,140 @@
+<authentication></authentication>
+<div class="row">
+	<div class="col-lg-12">
+		
+		
+		<h1 class="advn_tbl"><back></back>&nbsp;View Specifications</h1>
+		<div class="row"></div>
+		
+
+		 <ol class="breadcrumb">
+			<li><a href="javascript:void(0)">{{manufacturerName}}</a></li>
+			<li class="active"><span>{{modelName}}</span></li>
+		</ol>
+			<div class="row" style="margin-bottom:10px;">
+				<div class="col-md-12">
+				<div class="pull-right"><a type="button" style="float:right;" class="btn btn-primary"  href="#/specification/edit-specification/{{modelId}}/{{brand}}">Edit Specifications</a></div>
+				<div class="clearfix"></div>
+				</div>
+			</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<div class="main-box-body clearfix">
+					<table class="customTable" ng-repeat="cat in viewSpecData" ng-if="cat.subcategory.length > 0">
+				<div class="table-responsive">
+						<tr >
+							<td width="250"><h3>{{cat.cat_name}}</h3></td>
+							<td>
+								<table class="subTable">
+									<tr ng-repeat="subcat in cat.subcategory">
+										<th>{{subcat.subcat_name}}</th>
+										<td ng-if="subcat.selected_att_text.length > 0">
+										<div ng-repeat="x in subcat.selected_att_text">
+										{{x}}
+										</div>
+										</td>
+										<td ng-if="subcat.selected_att_text.length == 0">{{subcat.selected_att_numaric}}</td>
+									</tr>
+									<!-- <tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr> -->
+								</table>
+							</td>
+						</tr>
+					</table>
+					
+					
+				<!-- 	<table class="customTable">
+						<tr>
+							<td width="250"><h3>Network</h3></td>
+							<td>
+								<table class="subTable">
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					
+					
+					
+					<table class="customTable">
+						<tr>
+							<td width="250"><h3>Network</h3></td>
+							<td>
+								<table class="subTable">
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+									<tr>
+										<th>dadadad sd</th>
+										<td>kjdha dkahd kadk ahd adhakdhak</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table> -->
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- <style>
+.customTable{ width:100%; background:#F4F4F4; margin:15px 0px; border-collapse: collapse;}
+.customTable, .customTable th, .customTable td {    border: 1px solid #eeeeee; vertical-align:top;}
+.customTable td h3{ margin:15px 15px 5px 15px !important; color:#333333 !important; font-size:18px !important;}
+
+.subTable{ width:100%; background:#f7f7f7;}
+.subTable th{ width:200px;}
+.subTable th, .subTable td{ padding:12px;}
+</style> -->
+<style>
+.customTable{ width:100%; background:#EEE; margin:15px 0px; border-collapse: collapse;}
+.customTable, .customTable th, .customTable td {    border: 1px solid #CCCCCC; vertical-align:top;}
+.customTable td h3{ margin:15px 15px 5px 15px !important; color:#e84e40 !important;}
+
+.subTable{ width:100%; background:#F4F4F4;}
+.subTable th{ width:200px;}
+.subTable th{ padding:12px;}
+.subTable td div{ border-top: 1px solid #CCCCCC; padding:8px;}
+.subTable td div:nth-of-type(1){ border:0px;}
+</style>	
